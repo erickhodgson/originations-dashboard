@@ -244,27 +244,27 @@
     <div class="week-badge">Semana: <span id="week-label">06-abr – 12-abr</span></div>
     <select class="form-select" id="filter-week" onchange="render()" style="width:160px;font-size:11px;padding:6px 10px"><option value="">Todas las semanas</option></select>
     <select class="form-select" id="filter-agent-global" onchange="render()" style="width:160px;font-size:11px;padding:6px 10px"><option value="">Todos los agentes</option><option value="Amaury Garcia">Amaury Garcia</option><option value="Andrea Candiani">Andrea Candiani</option><option value="Andrea De la Torre">Andrea De la Torre</option><option value="Ashley Contreras">Ashley Contreras</option><option value="Irene Mendez">Irene Mendez</option><option value="Leslie Alvarado">Leslie Alvarado</option><option value="Luis Manuel Vite">Luis Manuel Vite</option><option value="Paulina Reyes">Paulina Reyes</option><option value="Raul Prieto">Raul Prieto</option><option value="Veronica Cruz">Veronica Cruz</option></select>
-    <div id="admin-controls" style="display: flex; align-items: center; gap: 10px;">
+    <div id="admin-controls" style="display:none;align-items:center;gap:10px">
       <button class="btn btn-paste" onclick="openPasteModal()">⊕ Pegar desde Sheets</button>
       <button class="btn btn-secondary" onclick="downloadHTML()">↓ Descargar index.html</button>
       <button class="btn btn-primary" onclick="openGithubModal()">⬆ Publicar en GitHub</button>
     </div>
-    <button class="btn btn-secondary" id="admin-toggle-btn" onclick="toggleAdmin()" style="font-size:11px;padding:6px 12px">🔓 Admin</button>
+    <button class="btn btn-secondary" id="admin-toggle-btn" onclick="toggleAdmin()" style="font-size:11px;padding:6px 12px">🔒 Admin</button>
   </div>
 </div>
 
 <div class="nav">
-  <button class="nav-tab active" onclick="switchTab('overview',this)">Overview</button>
+  <button class="nav-tab" onclick="switchTab('overview',this)">Overview</button>
   <button class="nav-tab" onclick="switchTab('agents',this)">Agentes</button>
   <button class="nav-tab" onclick="switchTab('followup',this)">Follow-Up</button>
-  <button class="nav-tab" onclick="switchTab('database',this)">Base de Datos</button>
-  <button class="nav-tab admin-only" onclick="switchTab('github',this)" style="display: inline-block;">GitHub Setup</button>
+  <button class="nav-tab active" onclick="switchTab('database',this)">Base de Datos</button>
+  <button class="nav-tab admin-only" onclick="switchTab('github',this)" style="display:none">GitHub Setup</button>
 </div>
 
 <div class="main">
 
   <!-- OVERVIEW -->
-  <div class="panel active" id="panel-overview">
+  <div class="panel" id="panel-overview">
     <div class="kpi-strip">
       <div class="kpi-card blue"><div class="kpi-label">Total Reviews</div><div class="kpi-value" id="kpi-total">75</div></div>
       <div class="kpi-card green"><div class="kpi-label">Ofertas Hechas</div><div class="kpi-value" id="kpi-offers">68</div></div>
@@ -728,7 +728,7 @@
   </div>
 
   <!-- DATABASE -->
-  <div class="panel" id="panel-database">
+  <div class="panel active" id="panel-database">
     <div class="db-header">
       <div class="db-filters">
         <input class="search-input" type="text" placeholder="Buscar agente, ticket..." id="db-search" oninput="renderDB()">
@@ -1090,7 +1090,7 @@
   </div>
 </div>
 
-<div class="toast success" id="toast">Modo admin activado ✓</div>
+<div class="toast" id="toast"></div>
 
 <!-- ADMIN PASSWORD MODAL -->
 <div class="modal-overlay" id="admin-modal">
@@ -1101,7 +1101,7 @@
       <label class="form-label">Contraseña</label>
       <input class="form-input" id="admin-pwd-input" type="password" placeholder="••••••••" onkeydown="if(event.key==='Enter')checkAdminPwd()">
     </div>
-    <div id="admin-pwd-error" style="display: block; color: var(--red); font-size: 12px; margin-top: 8px;">Contraseña incorrecta</div>
+    <div id="admin-pwd-error" style="display:none;color:var(--red);font-size:12px;margin-top:8px">Contraseña incorrecta</div>
     <div class="modal-actions">
       <button class="btn btn-secondary" onclick="document.getElementById('admin-modal').classList.remove('open')">Cancelar</button>
       <button class="btn btn-primary" onclick="checkAdminPwd()">Entrar</button>
@@ -1884,9 +1884,20 @@ async function publishToGithub() {
 
     setGhStatus('Subiendo archivo...', 'info');
 
-    // Encode current page as base64
+    // Encode page as base64 — always in public (non-admin) mode
+    // Temporarily hide admin-only elements so they don't appear in published version
+    const wasAdmin = isAdmin();
+    if (wasAdmin) {
+      sessionStorage.removeItem('orig_admin');
+      applyAdminState();
+    }
     const html = document.documentElement.outerHTML;
     const b64 = btoa(unescape(encodeURIComponent(html)));
+    // Restore admin state locally
+    if (wasAdmin) {
+      sessionStorage.setItem('orig_admin', 'true');
+      applyAdminState();
+    }
 
     const body = {
       message: `Dashboard update ${new Date().toLocaleDateString('es-MX')}`,
