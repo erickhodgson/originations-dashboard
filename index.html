@@ -1,24 +1,22 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
+<html lang="es"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Originations Performance Dashboard</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Syne:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0d0f14;
-    --surface: #141720;
-    --surface2: #1c2030;
-    --border: #252a3a;
-    --text: #e8eaf0;
-    --muted: #6b7394;
-    --accent: #4f8ef7;
-    --green: #2ecc8f;
-    --amber: #f5a623;
-    --red: #e85d5d;
-    --purple: #9b7ff4;
-    --teal: #38c9c9;
+    --bg: #f4f5f7;
+    --surface: #ffffff;
+    --surface2: #f0f2f5;
+    --border: #e2e5ec;
+    --text: #1a1d2e;
+    --muted: #8892a4;
+    --accent: #2563eb;
+    --green: #16a36a;
+    --amber: #d97706;
+    --red: #dc2626;
+    --purple: #7c3aed;
+    --teal: #0891b2;
     --font-head: 'Syne', sans-serif;
     --font-mono: 'DM Mono', monospace;
   }
@@ -32,7 +30,7 @@
     position: sticky; top: 0; z-index: 100;
   }
   .header-left { display: flex; align-items: center; gap: 16px; }
-  .logo-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px var(--accent); animation: pulse 2s ease-in-out infinite; }
+  .logo-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 8px rgba(37,99,235,.4); animation: pulse 2s ease-in-out infinite; }
   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
   .title { font-family: var(--font-head); font-size: 14px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
   .subtitle { font-size: 11px; color: var(--muted); letter-spacing: 0.05em; }
@@ -53,7 +51,7 @@
   /* KPI STRIP */
   .kpi-strip { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 24px; }
   .kpi-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; position: relative; overflow: hidden; transition: border-color .2s; }
-  .kpi-card:hover { border-color: #353d55; }
+  .kpi-card:hover { border-color: #c5cdd9; }
   .kpi-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
   .kpi-card.blue::before { background: var(--accent); }
   .kpi-card.green::before { background: var(--green); }
@@ -104,14 +102,14 @@
   .agent-table { width: 100%; border-collapse: collapse; }
   .agent-table th { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 8px 10px; text-align: left; border-bottom: 1px solid var(--border); }
   .agent-table th:not(:first-child) { text-align: center; }
-  .agent-table td { padding: 9px 10px; font-size: 12px; border-bottom: 1px solid #1a1f2e; vertical-align: middle; }
+  .agent-table td { padding: 9px 10px; font-size: 12px; border-bottom: 1px solid #edf0f5; vertical-align: middle; }
   .agent-table td:not(:first-child) { text-align: center; }
   .agent-table tr:last-child td { border-bottom: none; }
-  .agent-table tr:hover td { background: #1a1f2e; }
+  .agent-table tr:hover td { background: #f0f2f5; }
 
   /* FOLLOW-UP GRID */
   .followup-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 16px; }
-  .fu-stat { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 16px; text-align: center; }
+  .fu-stat { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px; text-align: center; }
   .fu-stat-val { font-family: var(--font-head); font-size: 28px; font-weight: 800; }
   .fu-stat-label { font-size: 10px; color: var(--muted); margin-top: 4px; letter-spacing: 0.08em; text-transform: uppercase; }
 
@@ -127,8 +125,8 @@
   .db-table-wrap { overflow-x: auto; max-height: 520px; overflow-y: auto; }
   .db-table { width: 100%; border-collapse: collapse; font-size: 12px; }
   .db-table th { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); white-space: nowrap; background: var(--surface); position: sticky; top: 0; z-index: 1; }
-  .db-table td { padding: 9px 12px; border-bottom: 1px solid #1a1f2e; color: var(--text); white-space: nowrap; vertical-align: middle; }
-  .db-table tr:hover td { background: #1a1f2e; }
+  .db-table td { padding: 9px 12px; border-bottom: 1px solid #edf0f5; color: var(--text); white-space: nowrap; vertical-align: middle; }
+  .db-table tr:hover td { background: #f0f2f5; }
   .db-table tr:last-child td { border-bottom: none; }
   .ticket-link { color: var(--accent); text-decoration: none; font-size: 11px; }
   .ticket-link:hover { text-decoration: underline; }
@@ -141,14 +139,14 @@
   .btn-secondary:hover { background: var(--surface2); }
   .btn-danger { background: transparent; color: var(--red); border-color: rgba(232,93,93,.4); }
   .btn-danger:hover { background: rgba(232,93,93,.1); }
-  .btn-paste { background: rgba(46,204,143,.1); color: var(--green); border-color: rgba(46,204,143,.4); }
-  .btn-paste:hover { background: rgba(46,204,143,.2); }
+  .btn-paste { background: rgba(22,163,106,.08); color: var(--green); border-color: rgba(22,163,106,.3); }
+  .btn-paste:hover { background: rgba(22,163,106,.15); }
 
   /* BADGE */
   .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 500; }
-  .badge.eff { background: rgba(46,204,143,.15); color: var(--green); }
-  .badge.maybe { background: rgba(245,166,35,.15); color: var(--amber); }
-  .badge.no { background: rgba(232,93,93,.15); color: var(--red); }
+  .badge.eff { background: rgba(22,163,106,.12); color: var(--green); }
+  .badge.maybe { background: rgba(217,119,6,.12); color: var(--amber); }
+  .badge.no { background: rgba(220,38,38,.12); color: var(--red); }
 
   /* FORMS */
   .form-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
@@ -171,13 +169,13 @@
   .modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px; }
 
   /* PASTE MODAL SPECIAL */
-  .paste-area { background: var(--surface2); border: 1px dashed var(--border); border-radius: 8px; padding: 16px; font-family: var(--font-mono); font-size: 11px; color: var(--text); width: 100%; min-height: 160px; resize: vertical; transition: border-color .2s; }
+  .paste-area { background: var(--surface); border: 1px dashed var(--border); border-radius: 8px; padding: 16px; font-family: var(--font-mono); font-size: 11px; color: var(--text); width: 100%; min-height: 160px; resize: vertical; transition: border-color .2s; }
   .paste-area:focus { outline: none; border-color: var(--green); }
   .paste-preview { margin-top: 16px; }
   .paste-preview-title { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
   .preview-table { width: 100%; border-collapse: collapse; font-size: 11px; }
-  .preview-table th { background: var(--surface); padding: 6px 10px; text-align: left; font-size: 10px; color: var(--muted); border-bottom: 1px solid var(--border); text-transform: uppercase; letter-spacing: 0.06em; }
-  .preview-table td { padding: 6px 10px; border-bottom: 1px solid #1a1f2e; }
+  .preview-table th { background: var(--surface2); padding: 6px 10px; text-align: left; font-size: 10px; color: var(--muted); border-bottom: 1px solid var(--border); text-transform: uppercase; letter-spacing: 0.06em; }
+  .preview-table td { padding: 6px 10px; border-bottom: 1px solid #edf0f5; }
   .preview-table tr:last-child td { border-bottom: none; }
   .match-badge { display: inline-block; padding: 2px 6px; border-radius: 3px; font-size: 10px; }
   .match-ok { background: rgba(46,204,143,.15); color: var(--green); }
@@ -208,8 +206,8 @@
   /* TOAST */
   .toast { position: fixed; bottom: 24px; right: 24px; z-index: 400; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; font-size: 12px; transform: translateY(80px); opacity: 0; transition: all .3s ease; pointer-events: none; }
   .toast.show { transform: translateY(0); opacity: 1; }
-  .toast.success { border-color: rgba(46,204,143,.4); color: var(--green); }
-  .toast.error { border-color: rgba(232,93,93,.4); color: var(--red); }
+  .toast.success { border-color: rgba(22,163,106,.4); color: var(--green); }
+  .toast.error { border-color: rgba(220,38,38,.4); color: var(--red); }
 
   /* SCROLLBAR */
   ::-webkit-scrollbar { width: 4px; height: 4px; }
@@ -218,12 +216,12 @@
 
   .empty { text-align: center; padding: 40px; color: var(--muted); font-size: 13px; }
   .step { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px; }
-  .step-num { width: 24px; height: 24px; border-radius: 50%; background: var(--accent); color: #0d0f14; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .step-num { width: 24px; height: 24px; border-radius: 50%; background: var(--accent); color: #ffffff; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .step-text { font-size: 12px; line-height: 1.7; color: var(--text); }
   .step-text code { background: var(--surface2); padding: 1px 6px; border-radius: 3px; font-family: var(--font-mono); font-size: 11px; color: var(--teal); }
-  .info-box { background: rgba(79,142,247,.08); border: 1px solid rgba(79,142,247,.2); border-radius: 8px; padding: 14px 16px; font-size: 12px; line-height: 1.7; margin-bottom: 16px; }
+  .info-box { background: rgba(37,99,235,.06); border: 1px solid rgba(37,99,235,.2); border-radius: 8px; padding: 14px 16px; font-size: 12px; line-height: 1.7; margin-bottom: 16px; }
   .info-box a { color: var(--accent); }
-  .warn-box { background: rgba(245,166,35,.08); border: 1px solid rgba(245,166,35,.2); border-radius: 8px; padding: 14px 16px; font-size: 12px; line-height: 1.7; margin-bottom: 16px; color: var(--amber); }
+  .warn-box { background: rgba(217,119,6,.06); border: 1px solid rgba(217,119,6,.2); border-radius: 8px; padding: 14px 16px; font-size: 12px; line-height: 1.7; margin-bottom: 16px; color: var(--amber); }
 
   @media (max-width: 900px) {
     .kpi-strip { grid-template-columns: repeat(2, 1fr); }
@@ -243,15 +241,18 @@
     </div>
   </div>
   <div class="header-right">
-    <div class="week-badge">Semana: <span id="week-label">—</span></div>
+    <div class="week-badge">Semana: <span id="week-label">06-abr – 12-abr</span></div>
+    <select class="form-select" id="filter-week" onchange="render()" style="width:160px;font-size:11px;padding:6px 10px"><option value="">Todas las semanas</option></select>
+    <select class="form-select" id="filter-agent-global" onchange="render()" style="width:160px;font-size:11px;padding:6px 10px"><option value="">Todos los agentes</option><option value="Amaury Garcia">Amaury Garcia</option><option value="Andrea Candiani">Andrea Candiani</option><option value="Andrea De la Torre">Andrea De la Torre</option><option value="Ashley Contreras">Ashley Contreras</option><option value="Irene Mendez">Irene Mendez</option><option value="Leslie Alvarado">Leslie Alvarado</option><option value="Luis Manuel Vite">Luis Manuel Vite</option><option value="Paulina Reyes">Paulina Reyes</option><option value="Raul Prieto">Raul Prieto</option><option value="Veronica Cruz">Veronica Cruz</option></select>
     <button class="btn btn-paste" onclick="openPasteModal()">⊕ Pegar desde Sheets</button>
+    <button class="btn btn-primary" onclick="downloadHTML()">↓ Descargar index.html</button>
   </div>
 </div>
 
 <div class="nav">
-  <button class="nav-tab active" onclick="switchTab('overview',this)">Overview</button>
+  <button class="nav-tab" onclick="switchTab('overview',this)">Overview</button>
   <button class="nav-tab" onclick="switchTab('agents',this)">Agentes</button>
-  <button class="nav-tab" onclick="switchTab('followup',this)">Follow-Up</button>
+  <button class="nav-tab active" onclick="switchTab('followup',this)">Follow-Up</button>
   <button class="nav-tab" onclick="switchTab('database',this)">Base de Datos</button>
   <button class="nav-tab" onclick="switchTab('github',this)">GitHub Setup</button>
 </div>
@@ -259,32 +260,126 @@
 <div class="main">
 
   <!-- OVERVIEW -->
-  <div class="panel active" id="panel-overview">
+  <div class="panel" id="panel-overview">
     <div class="kpi-strip">
-      <div class="kpi-card blue"><div class="kpi-label">Total Reviews</div><div class="kpi-value" id="kpi-total">0</div></div>
-      <div class="kpi-card green"><div class="kpi-label">Ofertas Hechas</div><div class="kpi-value" id="kpi-offers">0</div></div>
-      <div class="kpi-card amber"><div class="kpi-label">Ofertas Efectivas</div><div class="kpi-value" id="kpi-effective">0</div></div>
-      <div class="kpi-card red"><div class="kpi-label">Follow-Ups Done</div><div class="kpi-value" id="kpi-followups">0</div></div>
-      <div class="kpi-card purple"><div class="kpi-label">% Efectividad</div><div class="kpi-value" id="kpi-pct">0%</div></div>
+      <div class="kpi-card blue"><div class="kpi-label">Total Reviews</div><div class="kpi-value" id="kpi-total">75</div></div>
+      <div class="kpi-card green"><div class="kpi-label">Ofertas Hechas</div><div class="kpi-value" id="kpi-offers">68</div></div>
+      <div class="kpi-card amber"><div class="kpi-label">Ofertas Efectivas</div><div class="kpi-value" id="kpi-effective">18</div></div>
+      <div class="kpi-card red"><div class="kpi-label">Follow-Ups Done</div><div class="kpi-value" id="kpi-followups">11</div></div>
+      <div class="kpi-card purple"><div class="kpi-label">% Efectividad</div><div class="kpi-value" id="kpi-pct">26%</div></div>
     </div>
     <div class="grid-3-1">
       <div class="card">
         <div class="card-title">Process KPIs — % Cumplimiento</div>
-        <div id="kpi-bars"></div>
+        <div id="kpi-bars"><div class="hbar-row">
+      <div class="hbar-label">Oferta Hecha</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:91%;background:#2ecc8f"></div></div>
+      <div class="hbar-val" style="color:#2ecc8f">91%</div>
+    </div><div class="hbar-row">
+      <div class="hbar-label">Solución Inicial</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:84%;background:#2ecc8f"></div></div>
+      <div class="hbar-val" style="color:#2ecc8f">84%</div>
+    </div><div class="hbar-row">
+      <div class="hbar-label">Objeciones</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:24%;background:#e85d5d"></div></div>
+      <div class="hbar-val" style="color:#e85d5d">24%</div>
+    </div><div class="hbar-row">
+      <div class="hbar-label">Follow-Up</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:15%;background:#e85d5d"></div></div>
+      <div class="hbar-val" style="color:#e85d5d">15%</div>
+    </div><div class="hbar-row">
+      <div class="hbar-label">Tienda Compartida</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:23%;background:#e85d5d"></div></div>
+      <div class="hbar-val" style="color:#e85d5d">23%</div>
+    </div><div class="hbar-row">
+      <div class="hbar-label">Tel Trackeado</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:17%;background:#e85d5d"></div></div>
+      <div class="hbar-val" style="color:#e85d5d">17%</div>
+    </div></div>
       </div>
       <div class="card">
         <div class="card-title">Offer Effectiveness</div>
         <div style="display:flex;align-items:center;gap:20px;justify-content:center;padding:10px 0">
-          <svg id="donut-svg" width="110" height="110" viewBox="0 0 110 110"></svg>
-          <div id="donut-legend" class="donut-legend"></div>
+          <svg id="donut-svg" width="110" height="110" viewBox="0 0 110 110"><path d="M55,17 A38,38 0 0 1 92.92501568027433,52.61396025788609 L78.95264148227852,53.49302753129648 A24,24 0 0 0 55,31 Z" fill="#2ecc8f" opacity="0.9"></path><path d="M92.92501568027433,52.61396025788609 A38,38 0 0 1 71.89613680902724,89.0370468890977 L65.67124430043826,76.4970822457459 A24,24 0 0 0 78.95264148227852,53.49302753129648 Z" fill="#f5a623" opacity="0.9"></path><path d="M71.89613680902724,89.0370468890977 A38,38 0 1 1 54.99999999999999,17 L54.99999999999999,31 A24,24 0 1 0 65.67124430043826,76.4970822457459 Z" fill="#e85d5d" opacity="0.9"></path><text x="55" y="51" text-anchor="middle" font-family="Syne" font-size="16" font-weight="800" fill="#1a1d2e">75</text><text x="55" y="63" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#8892a4">reviews</text></svg>
+          <div id="donut-legend" class="donut-legend"><div class="donut-legend-item"><div class="donut-legend-dot" style="background:#2ecc8f"></div><span style="font-size:12px">Efectiva: <b>18</b></span></div><div class="donut-legend-item"><div class="donut-legend-dot" style="background:#f5a623"></div><span style="font-size:12px">Podría Mejorar: <b>14</b></span></div><div class="donut-legend-item"><div class="donut-legend-dot" style="background:#e85d5d"></div><span style="font-size:12px">No Efectiva: <b>43</b></span></div></div>
         </div>
-        <div id="offer-eff-grid" class="offer-eff-grid"></div>
+        <div id="offer-eff-grid" class="offer-eff-grid"><div class="offer-eff-cell"><div class="offer-eff-label">Efectiva</div><div class="offer-eff-num" style="color:#2ecc8f">18</div></div><div class="offer-eff-cell"><div class="offer-eff-label">Podría Mejorar</div><div class="offer-eff-num" style="color:#f5a623">14</div></div><div class="offer-eff-cell"><div class="offer-eff-label">No Efectiva</div><div class="offer-eff-num" style="color:#e85d5d">43</div></div></div>
       </div>
     </div>
     <div class="grid-2">
       <div class="card">
         <div class="card-title">Efectividad por Agente</div>
-        <div id="agent-stacked-bars"></div>
+        <div id="agent-stacked-bars"><div class="sbar-row">
+      <div class="sbar-agent">Luis Manuel Vite<span>9 reviews</span></div>
+      <div class="sbar-track">
+        <div class="sbar-seg eff" style="width:22%"></div>
+        <div class="sbar-seg maybe" style="width:11%"></div>
+        <div class="sbar-seg no" style="width:67%"></div>
+      </div>
+    </div><div class="sbar-row">
+      <div class="sbar-agent">Ashley Contreras<span>9 reviews</span></div>
+      <div class="sbar-track">
+        <div class="sbar-seg eff" style="width:0%"></div>
+        <div class="sbar-seg maybe" style="width:0%"></div>
+        <div class="sbar-seg no" style="width:100%"></div>
+      </div>
+    </div><div class="sbar-row">
+      <div class="sbar-agent">Irene Mendez<span>9 reviews</span></div>
+      <div class="sbar-track">
+        <div class="sbar-seg eff" style="width:33%"></div>
+        <div class="sbar-seg maybe" style="width:11%"></div>
+        <div class="sbar-seg no" style="width:56%"></div>
+      </div>
+    </div><div class="sbar-row">
+      <div class="sbar-agent">Raul Prieto<span>9 reviews</span></div>
+      <div class="sbar-track">
+        <div class="sbar-seg eff" style="width:33%"></div>
+        <div class="sbar-seg maybe" style="width:33%"></div>
+        <div class="sbar-seg no" style="width:33%"></div>
+      </div>
+    </div><div class="sbar-row">
+      <div class="sbar-agent">Leslie Alvarado<span>9 reviews</span></div>
+      <div class="sbar-track">
+        <div class="sbar-seg eff" style="width:44%"></div>
+        <div class="sbar-seg maybe" style="width:11%"></div>
+        <div class="sbar-seg no" style="width:44%"></div>
+      </div>
+    </div><div class="sbar-row">
+      <div class="sbar-agent">Andrea De la Torre<span>8 reviews</span></div>
+      <div class="sbar-track">
+        <div class="sbar-seg eff" style="width:13%"></div>
+        <div class="sbar-seg maybe" style="width:50%"></div>
+        <div class="sbar-seg no" style="width:38%"></div>
+      </div>
+    </div><div class="sbar-row">
+      <div class="sbar-agent">Veronica Cruz<span>8 reviews</span></div>
+      <div class="sbar-track">
+        <div class="sbar-seg eff" style="width:13%"></div>
+        <div class="sbar-seg maybe" style="width:38%"></div>
+        <div class="sbar-seg no" style="width:50%"></div>
+      </div>
+    </div><div class="sbar-row">
+      <div class="sbar-agent">Andrea Candiani<span>6 reviews</span></div>
+      <div class="sbar-track">
+        <div class="sbar-seg eff" style="width:17%"></div>
+        <div class="sbar-seg maybe" style="width:17%"></div>
+        <div class="sbar-seg no" style="width:67%"></div>
+      </div>
+    </div><div class="sbar-row">
+      <div class="sbar-agent">Paulina Reyes<span>6 reviews</span></div>
+      <div class="sbar-track">
+        <div class="sbar-seg eff" style="width:17%"></div>
+        <div class="sbar-seg maybe" style="width:0%"></div>
+        <div class="sbar-seg no" style="width:83%"></div>
+      </div>
+    </div><div class="sbar-row">
+      <div class="sbar-agent">Amaury Garcia<span>2 reviews</span></div>
+      <div class="sbar-track">
+        <div class="sbar-seg eff" style="width:100%"></div>
+        <div class="sbar-seg maybe" style="width:0%"></div>
+        <div class="sbar-seg no" style="width:0%"></div>
+      </div>
+    </div></div>
         <div style="display:flex;gap:12px;margin-top:10px;font-size:11px">
           <span><span class="dot eff"></span> Efectiva</span>
           <span><span class="dot maybe"></span> Podría Mejorar</span>
@@ -293,12 +388,97 @@
       </div>
       <div class="card">
         <div class="card-title">Tipos de Solicitud</div>
-        <div id="request-bars"></div>
+        <div id="request-bars">
+    <div class="hbar-row">
+      <div class="hbar-label">Extensión de pagos</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:100%;background:var(--teal)"></div></div>
+      <div class="hbar-val">31</div>
+    </div>
+    <div class="hbar-row">
+      <div class="hbar-label">Extensión</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:39%;background:var(--teal)"></div></div>
+      <div class="hbar-val">12</div>
+    </div>
+    <div class="hbar-row">
+      <div class="hbar-label">Consultas relacion…</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:26%;background:var(--teal)"></div></div>
+      <div class="hbar-val">8</div>
+    </div>
+    <div class="hbar-row">
+      <div class="hbar-label">Consultas de Finan…</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:19%;background:var(--teal)"></div></div>
+      <div class="hbar-val">6</div>
+    </div>
+    <div class="hbar-row">
+      <div class="hbar-label">Uso de la CL</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:13%;background:var(--teal)"></div></div>
+      <div class="hbar-val">4</div>
+    </div>
+    <div class="hbar-row">
+      <div class="hbar-label">Código de pago</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:6%;background:var(--teal)"></div></div>
+      <div class="hbar-val">2</div>
+    </div>
+    <div class="hbar-row">
+      <div class="hbar-label">extensión</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:6%;background:var(--teal)"></div></div>
+      <div class="hbar-val">2</div>
+    </div>
+    <div class="hbar-row">
+      <div class="hbar-label">Carta de no adeudo</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:3%;background:var(--teal)"></div></div>
+      <div class="hbar-val">1</div>
+    </div>
+    <div class="hbar-row">
+      <div class="hbar-label">Información de ser…</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:3%;background:var(--teal)"></div></div>
+      <div class="hbar-val">1</div>
+    </div>
+    <div class="hbar-row">
+      <div class="hbar-label">Pago no reflejado …</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:3%;background:var(--teal)"></div></div>
+      <div class="hbar-val">1</div>
+    </div>
+    <div class="hbar-row">
+      <div class="hbar-label">Solicitud Inicial</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:3%;background:var(--teal)"></div></div>
+      <div class="hbar-val">1</div>
+    </div>
+    <div class="hbar-row">
+      <div class="hbar-label">¿Cómo transferir?</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:3%;background:var(--teal)"></div></div>
+      <div class="hbar-val">1</div>
+    </div>
+    <div class="hbar-row">
+      <div class="hbar-label">Codigo de pago.</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:3%;background:var(--teal)"></div></div>
+      <div class="hbar-val">1</div>
+    </div>
+    <div class="hbar-row">
+      <div class="hbar-label">Interes en el desc…</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:3%;background:var(--teal)"></div></div>
+      <div class="hbar-val">1</div>
+    </div>
+    <div class="hbar-row">
+      <div class="hbar-label">Error general/app …</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:3%;background:var(--teal)"></div></div>
+      <div class="hbar-val">1</div>
+    </div>
+    <div class="hbar-row">
+      <div class="hbar-label">CAMBIO DE SIM</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:3%;background:var(--teal)"></div></div>
+      <div class="hbar-val">1</div>
+    </div>
+    <div class="hbar-row">
+      <div class="hbar-label">Desea credito</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:3%;background:var(--teal)"></div></div>
+      <div class="hbar-val">1</div>
+    </div></div>
       </div>
     </div>
     <div class="card">
       <div class="card-title">Razones — No Interesado / Abandono</div>
-      <div id="reason-grid" class="reason-grid"></div>
+      <div id="reason-grid" class="reason-grid"><div class="reason-pill"><strong>37</strong> Cliente Abandono</div><div class="reason-pill"><strong>8</strong> No Especifico</div><div class="reason-pill"><strong>7</strong> No Aplica</div></div>
     </div>
   </div>
 
@@ -314,32 +494,232 @@
             <th>Follow-Up</th><th>Tienda</th><th>Tel</th>
             <th>% Oferta</th><th>% Efectividad</th>
           </tr></thead>
-          <tbody id="agent-table-body"></tbody>
+          <tbody id="agent-table-body"><tr>
+      <td>Luis Manuel Vite</td><td>9</td><td>8</td>
+      <td style="color:var(--green)">2</td>
+      <td style="color:var(--amber)">1</td>
+      <td style="color:var(--red)">6</td>
+      <td>2</td><td>3</td><td>0</td>
+      <td>89%</td>
+      <td style="color:var(--red);font-weight:500">25%</td>
+    </tr><tr>
+      <td>Ashley Contreras</td><td>9</td><td>7</td>
+      <td style="color:var(--green)">0</td>
+      <td style="color:var(--amber)">0</td>
+      <td style="color:var(--red)">9</td>
+      <td>1</td><td>0</td><td>0</td>
+      <td>78%</td>
+      <td style="color:var(--red);font-weight:500">0%</td>
+    </tr><tr>
+      <td>Irene Mendez</td><td>9</td><td>9</td>
+      <td style="color:var(--green)">3</td>
+      <td style="color:var(--amber)">1</td>
+      <td style="color:var(--red)">5</td>
+      <td>0</td><td>1</td><td>1</td>
+      <td>100%</td>
+      <td style="color:var(--amber);font-weight:500">33%</td>
+    </tr><tr>
+      <td>Raul Prieto</td><td>9</td><td>7</td>
+      <td style="color:var(--green)">3</td>
+      <td style="color:var(--amber)">3</td>
+      <td style="color:var(--red)">3</td>
+      <td>2</td><td>3</td><td>3</td>
+      <td>78%</td>
+      <td style="color:var(--amber);font-weight:500">43%</td>
+    </tr><tr>
+      <td>Leslie Alvarado</td><td>9</td><td>8</td>
+      <td style="color:var(--green)">4</td>
+      <td style="color:var(--amber)">1</td>
+      <td style="color:var(--red)">4</td>
+      <td>2</td><td>5</td><td>4</td>
+      <td>89%</td>
+      <td style="color:var(--amber);font-weight:500">50%</td>
+    </tr><tr>
+      <td>Andrea De la Torre</td><td>8</td><td>8</td>
+      <td style="color:var(--green)">1</td>
+      <td style="color:var(--amber)">4</td>
+      <td style="color:var(--red)">3</td>
+      <td>1</td><td>0</td><td>1</td>
+      <td>100%</td>
+      <td style="color:var(--red);font-weight:500">13%</td>
+    </tr><tr>
+      <td>Veronica Cruz</td><td>8</td><td>7</td>
+      <td style="color:var(--green)">1</td>
+      <td style="color:var(--amber)">3</td>
+      <td style="color:var(--red)">4</td>
+      <td>0</td><td>2</td><td>3</td>
+      <td>88%</td>
+      <td style="color:var(--red);font-weight:500">14%</td>
+    </tr><tr>
+      <td>Andrea Candiani</td><td>6</td><td>6</td>
+      <td style="color:var(--green)">1</td>
+      <td style="color:var(--amber)">1</td>
+      <td style="color:var(--red)">4</td>
+      <td>1</td><td>2</td><td>1</td>
+      <td>100%</td>
+      <td style="color:var(--red);font-weight:500">17%</td>
+    </tr><tr>
+      <td>Paulina Reyes</td><td>6</td><td>6</td>
+      <td style="color:var(--green)">1</td>
+      <td style="color:var(--amber)">0</td>
+      <td style="color:var(--red)">5</td>
+      <td>0</td><td>0</td><td>0</td>
+      <td>100%</td>
+      <td style="color:var(--red);font-weight:500">17%</td>
+    </tr><tr>
+      <td>Amaury Garcia</td><td>2</td><td>2</td>
+      <td style="color:var(--green)">2</td>
+      <td style="color:var(--amber)">0</td>
+      <td style="color:var(--red)">0</td>
+      <td>2</td><td>1</td><td>0</td>
+      <td>100%</td>
+      <td style="color:var(--green);font-weight:500">100%</td>
+    </tr></tbody>
         </table>
       </div>
     </div>
     <div class="grid-2">
       <div class="card">
         <div class="card-title">Interés del Cliente por Agente</div>
-        <div id="interest-chart"></div>
+        <div id="interest-chart"><div class="sbar-row">
+      <div class="sbar-agent">Luis Manuel Vite</div>
+      <div class="sbar-track">
+        <div class="sbar-seg eff" style="width:22%"></div>
+        <div class="sbar-seg maybe" style="width:44%"></div>
+        <div class="sbar-seg no" style="width:33%"></div>
+      </div>
+    </div><div class="sbar-row">
+      <div class="sbar-agent">Ashley Contreras</div>
+      <div class="sbar-track">
+        <div class="sbar-seg eff" style="width:0%"></div>
+        <div class="sbar-seg maybe" style="width:0%"></div>
+        <div class="sbar-seg no" style="width:100%"></div>
+      </div>
+    </div><div class="sbar-row">
+      <div class="sbar-agent">Irene Mendez</div>
+      <div class="sbar-track">
+        <div class="sbar-seg eff" style="width:11%"></div>
+        <div class="sbar-seg maybe" style="width:11%"></div>
+        <div class="sbar-seg no" style="width:78%"></div>
+      </div>
+    </div><div class="sbar-row">
+      <div class="sbar-agent">Raul Prieto</div>
+      <div class="sbar-track">
+        <div class="sbar-seg eff" style="width:56%"></div>
+        <div class="sbar-seg maybe" style="width:22%"></div>
+        <div class="sbar-seg no" style="width:22%"></div>
+      </div>
+    </div><div class="sbar-row">
+      <div class="sbar-agent">Leslie Alvarado</div>
+      <div class="sbar-track">
+        <div class="sbar-seg eff" style="width:56%"></div>
+        <div class="sbar-seg maybe" style="width:22%"></div>
+        <div class="sbar-seg no" style="width:22%"></div>
+      </div>
+    </div><div class="sbar-row">
+      <div class="sbar-agent">Andrea De la Torre</div>
+      <div class="sbar-track">
+        <div class="sbar-seg eff" style="width:25%"></div>
+        <div class="sbar-seg maybe" style="width:25%"></div>
+        <div class="sbar-seg no" style="width:50%"></div>
+      </div>
+    </div><div class="sbar-row">
+      <div class="sbar-agent">Veronica Cruz</div>
+      <div class="sbar-track">
+        <div class="sbar-seg eff" style="width:38%"></div>
+        <div class="sbar-seg maybe" style="width:0%"></div>
+        <div class="sbar-seg no" style="width:63%"></div>
+      </div>
+    </div><div class="sbar-row">
+      <div class="sbar-agent">Andrea Candiani</div>
+      <div class="sbar-track">
+        <div class="sbar-seg eff" style="width:33%"></div>
+        <div class="sbar-seg maybe" style="width:50%"></div>
+        <div class="sbar-seg no" style="width:17%"></div>
+      </div>
+    </div><div class="sbar-row">
+      <div class="sbar-agent">Paulina Reyes</div>
+      <div class="sbar-track">
+        <div class="sbar-seg eff" style="width:17%"></div>
+        <div class="sbar-seg maybe" style="width:17%"></div>
+        <div class="sbar-seg no" style="width:67%"></div>
+      </div>
+    </div><div class="sbar-row">
+      <div class="sbar-agent">Amaury Garcia</div>
+      <div class="sbar-track">
+        <div class="sbar-seg eff" style="width:100%"></div>
+        <div class="sbar-seg maybe" style="width:0%"></div>
+        <div class="sbar-seg no" style="width:0%"></div>
+      </div>
+    </div><div style="display:flex;gap:12px;margin-top:10px;font-size:11px"><span><span class="dot eff"></span> Interesado</span><span><span class="dot maybe"></span> No interesado</span><span><span class="dot no"></span> Abandono</span></div></div>
       </div>
       <div class="card">
         <div class="card-title">Objeciones Manejadas (%)</div>
-        <div id="objections-chart"></div>
+        <div id="objections-chart"><div class="hbar-row">
+      <div class="hbar-label">Vite</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:25%;background:#e85d5d"></div></div>
+      <div class="hbar-val" style="color:#e85d5d">25%</div>
+    </div><div class="hbar-row">
+      <div class="hbar-label">Contreras</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:14%;background:#e85d5d"></div></div>
+      <div class="hbar-val" style="color:#e85d5d">14%</div>
+    </div><div class="hbar-row">
+      <div class="hbar-label">Mendez</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:11%;background:#e85d5d"></div></div>
+      <div class="hbar-val" style="color:#e85d5d">11%</div>
+    </div><div class="hbar-row">
+      <div class="hbar-label">Prieto</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:43%;background:#f5a623"></div></div>
+      <div class="hbar-val" style="color:#f5a623">43%</div>
+    </div><div class="hbar-row">
+      <div class="hbar-label">Alvarado</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:38%;background:#f5a623"></div></div>
+      <div class="hbar-val" style="color:#f5a623">38%</div>
+    </div><div class="hbar-row">
+      <div class="hbar-label">Torre</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:13%;background:#e85d5d"></div></div>
+      <div class="hbar-val" style="color:#e85d5d">13%</div>
+    </div><div class="hbar-row">
+      <div class="hbar-label">Cruz</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:0%;background:#e85d5d"></div></div>
+      <div class="hbar-val" style="color:#e85d5d">0%</div>
+    </div><div class="hbar-row">
+      <div class="hbar-label">Candiani</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:67%;background:#2ecc8f"></div></div>
+      <div class="hbar-val" style="color:#2ecc8f">67%</div>
+    </div><div class="hbar-row">
+      <div class="hbar-label">Reyes</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:17%;background:#e85d5d"></div></div>
+      <div class="hbar-val" style="color:#e85d5d">17%</div>
+    </div><div class="hbar-row">
+      <div class="hbar-label">Garcia</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:100%;background:#2ecc8f"></div></div>
+      <div class="hbar-val" style="color:#2ecc8f">100%</div>
+    </div></div>
       </div>
     </div>
   </div>
 
   <!-- FOLLOW-UP -->
-  <div class="panel" id="panel-followup">
-    <div class="followup-grid" id="fu-kpis"></div>
+  <div class="panel active" id="panel-followup">
+    <div class="followup-grid" id="fu-kpis"><div class="fu-stat"><div class="fu-stat-val" style="color:var(--green)">11</div><div class="fu-stat-label">Follow-Ups Hechos</div></div><div class="fu-stat"><div class="fu-stat-val" style="color:var(--red)">64</div><div class="fu-stat-label">Sin Follow-Up</div></div><div class="fu-stat"><div class="fu-stat-val" style="color:var(--accent)">15%</div><div class="fu-stat-label">% Cumplimiento</div></div><div class="fu-stat"><div class="fu-stat-val" style="color:var(--purple)">17</div><div class="fu-stat-label">Tienda Compartida</div></div><div class="fu-stat"><div class="fu-stat-val" style="color:var(--teal)">13</div><div class="fu-stat-label">Tel Trackeado</div></div><div class="fu-stat"><div class="fu-stat-val" style="color:var(--amber)">18</div><div class="fu-stat-label">Objeciones Manejadas</div></div></div>
     <div class="grid-2">
-      <div class="card"><div class="card-title">Follow-Up por Agente</div><div id="fu-agent-chart"></div></div>
-      <div class="card"><div class="card-title">Tienda Compartida por Agente</div><div id="store-agent-chart"></div></div>
+      <div class="card"><div class="card-title">Follow-Up por Agente</div><div id="fu-agent-chart"><div class="hbar-row"><div class="hbar-label">Vite</div><div class="hbar-track"><div class="hbar-fill" style="width:22%;background:#e85d5d"></div></div><div class="hbar-val" style="color:#e85d5d">22%</div></div><div class="hbar-row"><div class="hbar-label">Contreras</div><div class="hbar-track"><div class="hbar-fill" style="width:11%;background:#e85d5d"></div></div><div class="hbar-val" style="color:#e85d5d">11%</div></div><div class="hbar-row"><div class="hbar-label">Mendez</div><div class="hbar-track"><div class="hbar-fill" style="width:0%;background:#e85d5d"></div></div><div class="hbar-val" style="color:#e85d5d">0%</div></div><div class="hbar-row"><div class="hbar-label">Prieto</div><div class="hbar-track"><div class="hbar-fill" style="width:22%;background:#e85d5d"></div></div><div class="hbar-val" style="color:#e85d5d">22%</div></div><div class="hbar-row"><div class="hbar-label">Alvarado</div><div class="hbar-track"><div class="hbar-fill" style="width:22%;background:#e85d5d"></div></div><div class="hbar-val" style="color:#e85d5d">22%</div></div><div class="hbar-row"><div class="hbar-label">Torre</div><div class="hbar-track"><div class="hbar-fill" style="width:13%;background:#e85d5d"></div></div><div class="hbar-val" style="color:#e85d5d">13%</div></div><div class="hbar-row"><div class="hbar-label">Cruz</div><div class="hbar-track"><div class="hbar-fill" style="width:0%;background:#e85d5d"></div></div><div class="hbar-val" style="color:#e85d5d">0%</div></div><div class="hbar-row"><div class="hbar-label">Candiani</div><div class="hbar-track"><div class="hbar-fill" style="width:17%;background:#e85d5d"></div></div><div class="hbar-val" style="color:#e85d5d">17%</div></div><div class="hbar-row"><div class="hbar-label">Reyes</div><div class="hbar-track"><div class="hbar-fill" style="width:0%;background:#e85d5d"></div></div><div class="hbar-val" style="color:#e85d5d">0%</div></div><div class="hbar-row"><div class="hbar-label">Garcia</div><div class="hbar-track"><div class="hbar-fill" style="width:100%;background:#2ecc8f"></div></div><div class="hbar-val" style="color:#2ecc8f">100%</div></div></div></div>
+      <div class="card"><div class="card-title">Tienda Compartida por Agente</div><div id="store-agent-chart"><div class="hbar-row"><div class="hbar-label">Vite</div><div class="hbar-track"><div class="hbar-fill" style="width:33%;background:#f5a623"></div></div><div class="hbar-val" style="color:#f5a623">33%</div></div><div class="hbar-row"><div class="hbar-label">Contreras</div><div class="hbar-track"><div class="hbar-fill" style="width:0%;background:#e85d5d"></div></div><div class="hbar-val" style="color:#e85d5d">0%</div></div><div class="hbar-row"><div class="hbar-label">Mendez</div><div class="hbar-track"><div class="hbar-fill" style="width:11%;background:#e85d5d"></div></div><div class="hbar-val" style="color:#e85d5d">11%</div></div><div class="hbar-row"><div class="hbar-label">Prieto</div><div class="hbar-track"><div class="hbar-fill" style="width:33%;background:#f5a623"></div></div><div class="hbar-val" style="color:#f5a623">33%</div></div><div class="hbar-row"><div class="hbar-label">Alvarado</div><div class="hbar-track"><div class="hbar-fill" style="width:56%;background:#f5a623"></div></div><div class="hbar-val" style="color:#f5a623">56%</div></div><div class="hbar-row"><div class="hbar-label">Torre</div><div class="hbar-track"><div class="hbar-fill" style="width:0%;background:#e85d5d"></div></div><div class="hbar-val" style="color:#e85d5d">0%</div></div><div class="hbar-row"><div class="hbar-label">Cruz</div><div class="hbar-track"><div class="hbar-fill" style="width:25%;background:#e85d5d"></div></div><div class="hbar-val" style="color:#e85d5d">25%</div></div><div class="hbar-row"><div class="hbar-label">Candiani</div><div class="hbar-track"><div class="hbar-fill" style="width:33%;background:#f5a623"></div></div><div class="hbar-val" style="color:#f5a623">33%</div></div><div class="hbar-row"><div class="hbar-label">Reyes</div><div class="hbar-track"><div class="hbar-fill" style="width:0%;background:#e85d5d"></div></div><div class="hbar-val" style="color:#e85d5d">0%</div></div><div class="hbar-row"><div class="hbar-label">Garcia</div><div class="hbar-track"><div class="hbar-fill" style="width:50%;background:#f5a623"></div></div><div class="hbar-val" style="color:#f5a623">50%</div></div></div></div>
     </div>
     <div class="grid-2">
-      <div class="card"><div class="card-title">Canal de Preferencia</div><div id="channel-chart"></div></div>
-      <div class="card"><div class="card-title">Teléfono Trackeado por Agente</div><div id="tel-agent-chart"></div></div>
+      <div class="card"><div class="card-title">Canal de Preferencia</div><div id="channel-chart">
+    <div class="hbar-row"><div class="hbar-label">Sin definir</div><div class="hbar-track"><div class="hbar-fill" style="width:100%;background:var(--teal)"></div></div><div class="hbar-val">43</div></div>
+    <div class="hbar-row"><div class="hbar-label">No</div><div class="hbar-track"><div class="hbar-fill" style="width:30%;background:var(--teal)"></div></div><div class="hbar-val">13</div></div>
+    <div class="hbar-row"><div class="hbar-label">No se especifica</div><div class="hbar-track"><div class="hbar-fill" style="width:16%;background:var(--teal)"></div></div><div class="hbar-val">7</div></div>
+    <div class="hbar-row"><div class="hbar-label">Whatsapp</div><div class="hbar-track"><div class="hbar-fill" style="width:12%;background:var(--teal)"></div></div><div class="hbar-val">5</div></div>
+    <div class="hbar-row"><div class="hbar-label">Llamada</div><div class="hbar-track"><div class="hbar-fill" style="width:5%;background:var(--teal)"></div></div><div class="hbar-val">2</div></div>
+    <div class="hbar-row"><div class="hbar-label">Sin especificar</div><div class="hbar-track"><div class="hbar-fill" style="width:2%;background:var(--teal)"></div></div><div class="hbar-val">1</div></div>
+    <div class="hbar-row"><div class="hbar-label">WhatsApp</div><div class="hbar-track"><div class="hbar-fill" style="width:2%;background:var(--teal)"></div></div><div class="hbar-val">1</div></div>
+    <div class="hbar-row"><div class="hbar-label">desea acudir a tienda</div><div class="hbar-track"><div class="hbar-fill" style="width:2%;background:var(--teal)"></div></div><div class="hbar-val">1</div></div>
+    <div class="hbar-row"><div class="hbar-label">ONLINE</div><div class="hbar-track"><div class="hbar-fill" style="width:2%;background:var(--teal)"></div></div><div class="hbar-val">1</div></div>
+    <div class="hbar-row"><div class="hbar-label">Acepto la oferta en otro chat</div><div class="hbar-track"><div class="hbar-fill" style="width:2%;background:var(--teal)"></div></div><div class="hbar-val">1</div></div></div></div>
+      <div class="card"><div class="card-title">Teléfono Trackeado por Agente</div><div id="tel-agent-chart"><div class="hbar-row"><div class="hbar-label">Vite</div><div class="hbar-track"><div class="hbar-fill" style="width:0%;background:#e85d5d"></div></div><div class="hbar-val" style="color:#e85d5d">0%</div></div><div class="hbar-row"><div class="hbar-label">Contreras</div><div class="hbar-track"><div class="hbar-fill" style="width:0%;background:#e85d5d"></div></div><div class="hbar-val" style="color:#e85d5d">0%</div></div><div class="hbar-row"><div class="hbar-label">Mendez</div><div class="hbar-track"><div class="hbar-fill" style="width:11%;background:#e85d5d"></div></div><div class="hbar-val" style="color:#e85d5d">11%</div></div><div class="hbar-row"><div class="hbar-label">Prieto</div><div class="hbar-track"><div class="hbar-fill" style="width:33%;background:#f5a623"></div></div><div class="hbar-val" style="color:#f5a623">33%</div></div><div class="hbar-row"><div class="hbar-label">Alvarado</div><div class="hbar-track"><div class="hbar-fill" style="width:44%;background:#f5a623"></div></div><div class="hbar-val" style="color:#f5a623">44%</div></div><div class="hbar-row"><div class="hbar-label">Torre</div><div class="hbar-track"><div class="hbar-fill" style="width:13%;background:#e85d5d"></div></div><div class="hbar-val" style="color:#e85d5d">13%</div></div><div class="hbar-row"><div class="hbar-label">Cruz</div><div class="hbar-track"><div class="hbar-fill" style="width:38%;background:#f5a623"></div></div><div class="hbar-val" style="color:#f5a623">38%</div></div><div class="hbar-row"><div class="hbar-label">Candiani</div><div class="hbar-track"><div class="hbar-fill" style="width:17%;background:#e85d5d"></div></div><div class="hbar-val" style="color:#e85d5d">17%</div></div><div class="hbar-row"><div class="hbar-label">Reyes</div><div class="hbar-track"><div class="hbar-fill" style="width:0%;background:#e85d5d"></div></div><div class="hbar-val" style="color:#e85d5d">0%</div></div><div class="hbar-row"><div class="hbar-label">Garcia</div><div class="hbar-track"><div class="hbar-fill" style="width:0%;background:#e85d5d"></div></div><div class="hbar-val" style="color:#e85d5d">0%</div></div></div></div>
     </div>
   </div>
 
@@ -348,9 +728,7 @@
     <div class="db-header">
       <div class="db-filters">
         <input class="search-input" type="text" placeholder="Buscar agente, ticket..." id="db-search" oninput="renderDB()">
-        <select class="form-select" id="db-filter-agent" onchange="renderDB()" style="width:160px">
-          <option value="">Todos los agentes</option>
-        </select>
+        <select class="form-select" id="db-filter-agent" onchange="renderDB()" style="width:160px"><option value="">Todos los agentes</option><option value="Amaury Garcia">Amaury Garcia</option><option value="Andrea Candiani">Andrea Candiani</option><option value="Andrea De la Torre">Andrea De la Torre</option><option value="Ashley Contreras">Ashley Contreras</option><option value="Irene Mendez">Irene Mendez</option><option value="Leslie Alvarado">Leslie Alvarado</option><option value="Luis Manuel Vite">Luis Manuel Vite</option><option value="Paulina Reyes">Paulina Reyes</option><option value="Raul Prieto">Raul Prieto</option><option value="Veronica Cruz">Veronica Cruz</option></select>
         <select class="form-select" id="db-filter-eff" onchange="renderDB()" style="width:160px">
           <option value="">Efectividad</option>
           <option>Efectiva</option><option>Podria Mejorar</option><option>No Efectiva</option>
@@ -359,7 +737,8 @@
       <div class="db-actions">
         <button class="btn btn-secondary" onclick="exportCSV()">Exportar CSV</button>
         <button class="btn btn-paste" onclick="openPasteModal()">⊕ Pegar desde Sheets</button>
-        <button class="btn btn-primary" onclick="openAddModal()">+ Agregar Review</button>
+        <button class="btn btn-primary" onclick="downloadHTML()">↓ Descargar index.html</button>
+        <button class="btn btn-secondary" onclick="openAddModal()">+ Agregar Review</button>
       </div>
     </div>
     <div class="card" style="padding:0;overflow:hidden">
@@ -370,11 +749,221 @@
             <th>Oferta</th><th>Efectividad</th><th>Interesado</th><th>Objeciones</th>
             <th>Follow-Up</th><th>Tienda</th><th>Tel</th><th>Canal</th><th>Comentarios</th><th></th>
           </tr></thead>
-          <tbody id="db-tbody"></tbody>
+          <tbody id="db-tbody"><tr>
+    <td><a class="ticket-link" href="https://payjoy.zendesk.com/agent/tickets/24073370" target="_blank">#24073370</a></td>
+    <td>Andrea Candiani</td>
+    <td style="max-width:120px;overflow:hidden;text-overflow:ellipsis">Extensión de pagos</td>
+    <td><span style="color:var(--green)">Si</span></td><td><span style="color:var(--green)">Si</span></td>
+    <td><span class="badge maybe">Podría Mejorar</span></td>
+    <td style="color:var(--red)">No</td>
+    <td><span style="color:var(--green)">Si</span></td><td><span style="color:var(--red)">No</span></td><td><span style="color:var(--red)">No</span></td><td><span style="color:var(--red)">No</span></td>
+    <td style="color:var(--muted)">Sin definir</td>
+    <td style="max-width:150px;overflow:hidden;text-overflow:ellipsis;color:var(--muted);font-size:11px" title="Es relevante la forma en que se ofrece esta oferta, quiza los mensajes en que se comparte la información, si recordamos que es una labor de venta, esta debe de ser vistoza, pero siempre viendola como una oportunidad en cada gestión">Es relevante la forma en que se ofrece esta oferta…</td>
+    <td style="display:flex;gap:4px">
+      <button class="btn btn-secondary" style="padding:3px 8px;font-size:10px" onclick="editRow(0)">✎</button>
+      <button class="btn btn-danger" style="padding:3px 8px;font-size:10px" onclick="deleteRow(0)">✕</button>
+    </td>
+  </tr><tr>
+    <td><a class="ticket-link" href="https://payjoy.zendesk.com/agent/tickets/24095988" target="_blank">#24095988</a></td>
+    <td>Luis Manuel Vite</td>
+    <td style="max-width:120px;overflow:hidden;text-overflow:ellipsis">Extensión de pagos</td>
+    <td><span style="color:var(--green)">Si</span></td><td><span style="color:var(--green)">Si</span></td>
+    <td><span class="badge maybe">Podría Mejorar</span></td>
+    <td style="color:var(--red)">No</td>
+    <td><span style="color:var(--red)">No</span></td><td><span style="color:var(--red)">No</span></td><td><span style="color:var(--red)">No</span></td><td><span style="color:var(--red)">No</span></td>
+    <td style="color:var(--muted)">Sin definir</td>
+    <td style="max-width:150px;overflow:hidden;text-overflow:ellipsis;color:var(--muted);font-size:11px" title="Se sugiere trabajar en el proceso de venta y majeno de objeciones, en la primer negativa del cliente, dejan de intentar hacer la labor de venta">Se sugiere trabajar en el proceso de venta y majen…</td>
+    <td style="display:flex;gap:4px">
+      <button class="btn btn-secondary" style="padding:3px 8px;font-size:10px" onclick="editRow(1)">✎</button>
+      <button class="btn btn-danger" style="padding:3px 8px;font-size:10px" onclick="deleteRow(1)">✕</button>
+    </td>
+  </tr><tr>
+    <td><a class="ticket-link" href="https://payjoy.zendesk.com/agent/tickets/24110425" target="_blank">#24110425</a></td>
+    <td>Ashley Contreras</td>
+    <td style="max-width:120px;overflow:hidden;text-overflow:ellipsis">Extensión de pagos</td>
+    <td><span style="color:var(--green)">Si</span></td><td><span style="color:var(--green)">Si</span></td>
+    <td><span class="badge no">No Efectiva</span></td>
+    <td style="color:var(--muted)">Cliente Abandono</td>
+    <td><span style="color:var(--red)">No</span></td><td><span style="color:var(--red)">No</span></td><td><span style="color:var(--red)">No</span></td><td><span style="color:var(--red)">No</span></td>
+    <td style="color:var(--muted)">Sin definir</td>
+    <td style="max-width:150px;overflow:hidden;text-overflow:ellipsis;color:var(--muted);font-size:11px" title="Se cierra gestión por falta de contacto">Se cierra gestión por falta de contacto</td>
+    <td style="display:flex;gap:4px">
+      <button class="btn btn-secondary" style="padding:3px 8px;font-size:10px" onclick="editRow(2)">✎</button>
+      <button class="btn btn-danger" style="padding:3px 8px;font-size:10px" onclick="deleteRow(2)">✕</button>
+    </td>
+  </tr><tr>
+    <td><a class="ticket-link" href="https://payjoy.zendesk.com/agent/tickets/24073384" target="_blank">#24073384</a></td>
+    <td>Andrea Candiani</td>
+    <td style="max-width:120px;overflow:hidden;text-overflow:ellipsis">Extensión de pagos</td>
+    <td><span style="color:var(--green)">Si</span></td><td><span style="color:var(--green)">Si</span></td>
+    <td><span class="badge no">No Efectiva</span></td>
+    <td style="color:var(--muted)">Cliente Abandono</td>
+    <td><span style="color:var(--red)">No</span></td><td><span style="color:var(--red)">No</span></td><td><span style="color:var(--green)">Si</span></td><td><span style="color:var(--red)">No</span></td>
+    <td style="color:var(--muted)">Sin definir</td>
+    <td style="max-width:150px;overflow:hidden;text-overflow:ellipsis;color:var(--muted);font-size:11px" title="Se recomienda brindar más alternativas de tiendas físicas cercanas al cliente.">Se recomienda brindar más alternativas de tiendas …</td>
+    <td style="display:flex;gap:4px">
+      <button class="btn btn-secondary" style="padding:3px 8px;font-size:10px" onclick="editRow(3)">✎</button>
+      <button class="btn btn-danger" style="padding:3px 8px;font-size:10px" onclick="deleteRow(3)">✕</button>
+    </td>
+  </tr><tr>
+    <td><a class="ticket-link" href="https://payjoy.zendesk.com/agent/tickets/24095425" target="_blank">#24095425</a></td>
+    <td>Andrea Candiani</td>
+    <td style="max-width:120px;overflow:hidden;text-overflow:ellipsis">Consultas de Financiamiento</td>
+    <td><span style="color:var(--green)">Si</span></td><td><span style="color:var(--green)">Si</span></td>
+    <td><span class="badge no">No Efectiva</span></td>
+    <td style="color:var(--green)">Si</td>
+    <td><span style="color:var(--red)">No</span></td><td><span style="color:var(--red)">No</span></td><td><span style="color:var(--red)">No</span></td><td><span style="color:var(--red)">No</span></td>
+    <td style="color:var(--muted)">Sin definir</td>
+    <td style="max-width:150px;overflow:hidden;text-overflow:ellipsis;color:var(--muted);font-size:11px" title="Cliente interesado en línea de crédito. Cierre por inactividad.">Cliente interesado en línea de crédito. Cierre por…</td>
+    <td style="display:flex;gap:4px">
+      <button class="btn btn-secondary" style="padding:3px 8px;font-size:10px" onclick="editRow(4)">✎</button>
+      <button class="btn btn-danger" style="padding:3px 8px;font-size:10px" onclick="deleteRow(4)">✕</button>
+    </td>
+  </tr><tr>
+    <td><a class="ticket-link" href="https://payjoy.zendesk.com/agent/tickets/24060017" target="_blank">#24060017</a></td>
+    <td>Andrea De la Torre</td>
+    <td style="max-width:120px;overflow:hidden;text-overflow:ellipsis">Consultas relacionadas a Pagos</td>
+    <td><span style="color:var(--red)">No</span></td><td><span style="color:var(--green)">Si</span></td>
+    <td><span class="badge maybe">Podría Mejorar</span></td>
+    <td style="color:var(--muted)">Cliente Abandono</td>
+    <td><span style="color:var(--red)">No</span></td><td><span style="color:var(--red)">No</span></td><td><span style="color:var(--red)">No</span></td><td><span style="color:var(--red)">No</span></td>
+    <td style="color:var(--muted)">Sin definir</td>
+    <td style="max-width:150px;overflow:hidden;text-overflow:ellipsis;color:var(--muted);font-size:11px" title="La agente se enfoca en enviar oferta y esperar respuesta del cliente, descuidando la resolución a la consulta inicial del cliente.">La agente se enfoca en enviar oferta y esperar res…</td>
+    <td style="display:flex;gap:4px">
+      <button class="btn btn-secondary" style="padding:3px 8px;font-size:10px" onclick="editRow(5)">✎</button>
+      <button class="btn btn-danger" style="padding:3px 8px;font-size:10px" onclick="deleteRow(5)">✕</button>
+    </td>
+  </tr><tr>
+    <td><a class="ticket-link" href="https://payjoy.zendesk.com/agent/tickets/24080629" target="_blank">#24080629</a></td>
+    <td>Andrea De la Torre</td>
+    <td style="max-width:120px;overflow:hidden;text-overflow:ellipsis">Consultas relacionadas a Pagos</td>
+    <td><span style="color:var(--red)">No</span></td><td><span style="color:var(--green)">Si</span></td>
+    <td><span class="badge maybe">Podría Mejorar</span></td>
+    <td style="color:var(--muted)">Cliente Abandono</td>
+    <td><span style="color:var(--red)">No</span></td><td><span style="color:var(--red)">No</span></td><td><span style="color:var(--red)">No</span></td><td><span style="color:var(--red)">No</span></td>
+    <td style="color:var(--muted)">Sin definir</td>
+    <td style="max-width:150px;overflow:hidden;text-overflow:ellipsis;color:var(--muted);font-size:11px" title="La agente se enfoca en enviar oferta y esperar respuesta del cliente, descuidando la resolución a la consulta inicial del cliente.">La agente se enfoca en enviar oferta y esperar res…</td>
+    <td style="display:flex;gap:4px">
+      <button class="btn btn-secondary" style="padding:3px 8px;font-size:10px" onclick="editRow(6)">✎</button>
+      <button class="btn btn-danger" style="padding:3px 8px;font-size:10px" onclick="deleteRow(6)">✕</button>
+    </td>
+  </tr><tr>
+    <td><a class="ticket-link" href="https://payjoy.zendesk.com/agent/tickets/24068669" target="_blank">#24068669</a></td>
+    <td>Andrea De la Torre</td>
+    <td style="max-width:120px;overflow:hidden;text-overflow:ellipsis">Extensión de pagos</td>
+    <td><span style="color:var(--green)">Si</span></td><td><span style="color:var(--green)">Si</span></td>
+    <td><span class="badge maybe">Podría Mejorar</span></td>
+    <td style="color:var(--green)">Si</td>
+    <td><span style="color:var(--red)">No</span></td><td><span style="color:var(--red)">No</span></td><td><span style="color:var(--red)">No</span></td><td><span style="color:var(--red)">No</span></td>
+    <td style="color:var(--muted)">Sin definir</td>
+    <td style="max-width:150px;overflow:hidden;text-overflow:ellipsis;color:var(--muted);font-size:11px" title="El cliente se muestra interesado pero no se pregunta el código postal para ofrecer dirección de tiendas cercanas.">El cliente se muestra interesado pero no se pregun…</td>
+    <td style="display:flex;gap:4px">
+      <button class="btn btn-secondary" style="padding:3px 8px;font-size:10px" onclick="editRow(7)">✎</button>
+      <button class="btn btn-danger" style="padding:3px 8px;font-size:10px" onclick="deleteRow(7)">✕</button>
+    </td>
+  </tr><tr>
+    <td><a class="ticket-link" href="https://payjoy.zendesk.com/agent/tickets/24073499" target="_blank">#24073499</a></td>
+    <td>Ashley Contreras</td>
+    <td style="max-width:120px;overflow:hidden;text-overflow:ellipsis">Extensión de pagos</td>
+    <td><span style="color:var(--green)">Si</span></td><td><span style="color:var(--green)">Si</span></td>
+    <td><span class="badge no">No Efectiva</span></td>
+    <td style="color:var(--muted)">Cliente Abandono</td>
+    <td><span style="color:var(--red)">No</span></td><td><span style="color:var(--red)">No</span></td><td><span style="color:var(--red)">No</span></td><td><span style="color:var(--red)">No</span></td>
+    <td style="color:var(--muted)">Sin definir</td>
+    <td style="max-width:150px;overflow:hidden;text-overflow:ellipsis;color:var(--muted);font-size:11px" title="Existe inactividad del cliente desde que se comienza la conversación con el agente, influyendo el tiempo de espera a que sea asignado el ticket (9 minutos).">Existe inactividad del cliente desde que se comien…</td>
+    <td style="display:flex;gap:4px">
+      <button class="btn btn-secondary" style="padding:3px 8px;font-size:10px" onclick="editRow(8)">✎</button>
+      <button class="btn btn-danger" style="padding:3px 8px;font-size:10px" onclick="deleteRow(8)">✕</button>
+    </td>
+  </tr><tr>
+    <td><a class="ticket-link" href="https://payjoy.zendesk.com/agent/tickets/24073665/events" target="_blank">#24073665</a></td>
+    <td>Ashley Contreras</td>
+    <td style="max-width:120px;overflow:hidden;text-overflow:ellipsis">Extensión de pagos</td>
+    <td><span style="color:var(--green)">Si</span></td><td><span style="color:var(--green)">Si</span></td>
+    <td><span class="badge no">No Efectiva</span></td>
+    <td style="color:var(--muted)">Cliente Abandono</td>
+    <td><span style="color:var(--red)">No</span></td><td><span style="color:var(--red)">No</span></td><td><span style="color:var(--red)">No</span></td><td><span style="color:var(--red)">No</span></td>
+    <td style="color:var(--muted)">Sin definir</td>
+    <td style="max-width:150px;overflow:hidden;text-overflow:ellipsis;color:var(--muted);font-size:11px" title="Existe inactividad del cliente desde que se comienza la conversación con el agente, influyendo el tiempo de espera a que sea asignado el ticket (14 minutos).">Existe inactividad del cliente desde que se comien…</td>
+    <td style="display:flex;gap:4px">
+      <button class="btn btn-secondary" style="padding:3px 8px;font-size:10px" onclick="editRow(9)">✎</button>
+      <button class="btn btn-danger" style="padding:3px 8px;font-size:10px" onclick="deleteRow(9)">✕</button>
+    </td>
+  </tr><tr>
+    <td><a class="ticket-link" href="https://payjoy.zendesk.com/agent/tickets/24081929" target="_blank">#24081929</a></td>
+    <td>Luis Manuel Vite</td>
+    <td style="max-width:120px;overflow:hidden;text-overflow:ellipsis">Consultas de Financiamiento</td>
+    <td><span style="color:var(--green)">Si</span></td><td><span style="color:var(--green)">Si</span></td>
+    <td><span class="badge no">No Efectiva</span></td>
+    <td style="color:var(--muted)">Cliente Abandono</td>
+    <td><span style="color:var(--red)">No</span></td><td><span style="color:var(--red)">No</span></td><td><span style="color:var(--green)">Si</span></td><td><span style="color:var(--red)">No</span></td>
+    <td style="color:var(--muted)">Sin definir</td>
+    <td style="max-width:150px;overflow:hidden;text-overflow:ellipsis;color:var(--muted);font-size:11px" title="El agente proporciona tres direcciones de tiendas cercanas antes de cierre por inactividad.">El agente proporciona tres direcciones de tiendas …</td>
+    <td style="display:flex;gap:4px">
+      <button class="btn btn-secondary" style="padding:3px 8px;font-size:10px" onclick="editRow(10)">✎</button>
+      <button class="btn btn-danger" style="padding:3px 8px;font-size:10px" onclick="deleteRow(10)">✕</button>
+    </td>
+  </tr><tr>
+    <td><a class="ticket-link" href="https://payjoy.zendesk.com/agent/tickets/24082150" target="_blank">#24082150</a></td>
+    <td>Luis Manuel Vite</td>
+    <td style="max-width:120px;overflow:hidden;text-overflow:ellipsis">Carta de no adeudo</td>
+    <td><span style="color:var(--green)">Si</span></td><td><span style="color:var(--green)">Si</span></td>
+    <td><span class="badge no">No Efectiva</span></td>
+    <td style="color:var(--red)">No</td>
+    <td><span style="color:var(--red)">No</span></td><td><span style="color:var(--red)">No</span></td><td><span style="color:var(--green)">Si</span></td><td><span style="color:var(--red)">No</span></td>
+    <td style="color:var(--muted)">Sin definir</td>
+    <td style="max-width:150px;overflow:hidden;text-overflow:ellipsis;color:var(--muted);font-size:11px" title="Existe desinterés del cliente en la oferta, enfocándose únicamente en recibir información acerca de su consulta.">Existe desinterés del cliente en la oferta, enfocá…</td>
+    <td style="display:flex;gap:4px">
+      <button class="btn btn-secondary" style="padding:3px 8px;font-size:10px" onclick="editRow(11)">✎</button>
+      <button class="btn btn-danger" style="padding:3px 8px;font-size:10px" onclick="deleteRow(11)">✕</button>
+    </td>
+  </tr><tr>
+    <td><a class="ticket-link" href="https://payjoy.zendesk.com/agent/tickets/24150082" target="_blank">#24150082</a></td>
+    <td>Irene Mendez</td>
+    <td style="max-width:120px;overflow:hidden;text-overflow:ellipsis">Consultas relacionadas a Pagos</td>
+    <td><span style="color:var(--green)">Si</span></td><td><span style="color:var(--green)">Si</span></td>
+    <td><span class="badge no">No Efectiva</span></td>
+    <td style="color:var(--muted)">Cliente Abandono</td>
+    <td><span style="color:var(--red)">No</span></td><td><span style="color:var(--red)">No</span></td><td><span style="color:var(--red)">No</span></td><td><span style="color:var(--red)">No</span></td>
+    <td style="color:var(--muted)">Sin definir</td>
+    <td style="max-width:150px;overflow:hidden;text-overflow:ellipsis;color:var(--muted);font-size:11px" title="La agente ofrece opción de adquirir un producto que incluye PF y CL sin verificar antes la disponibilidad de una tienda física basada en el código postal del cliente.">La agente ofrece opción de adquirir un producto qu…</td>
+    <td style="display:flex;gap:4px">
+      <button class="btn btn-secondary" style="padding:3px 8px;font-size:10px" onclick="editRow(12)">✎</button>
+      <button class="btn btn-danger" style="padding:3px 8px;font-size:10px" onclick="deleteRow(12)">✕</button>
+    </td>
+  </tr><tr>
+    <td><a class="ticket-link" href="https://payjoy.zendesk.com/agent/tickets/24171140" target="_blank">#24171140</a></td>
+    <td>Irene Mendez</td>
+    <td style="max-width:120px;overflow:hidden;text-overflow:ellipsis">Código de pago</td>
+    <td><span style="color:var(--green)">Si</span></td><td><span style="color:var(--green)">Si</span></td>
+    <td><span class="badge no">No Efectiva</span></td>
+    <td style="color:var(--muted)">Cliente Abandono</td>
+    <td><span style="color:var(--red)">No</span></td><td><span style="color:var(--red)">No</span></td><td><span style="color:var(--red)">No</span></td><td><span style="color:var(--red)">No</span></td>
+    <td style="color:var(--muted)">Sin definir</td>
+    <td style="max-width:150px;overflow:hidden;text-overflow:ellipsis;color:var(--muted);font-size:11px" title="La agente ofrece opción de adquirir un producto que incluye PF y CL sin verificar antes la disponibilidad de una tienda física basada en el código postal del cliente.">La agente ofrece opción de adquirir un producto qu…</td>
+    <td style="display:flex;gap:4px">
+      <button class="btn btn-secondary" style="padding:3px 8px;font-size:10px" onclick="editRow(13)">✎</button>
+      <button class="btn btn-danger" style="padding:3px 8px;font-size:10px" onclick="deleteRow(13)">✕</button>
+    </td>
+  </tr><tr>
+    <td><a class="ticket-link" href="https://payjoy.zendesk.com/agent/tickets/24150111" target="_blank">#24150111</a></td>
+    <td>Irene Mendez</td>
+    <td style="max-width:120px;overflow:hidden;text-overflow:ellipsis">Código de pago</td>
+    <td><span style="color:var(--green)">Si</span></td><td><span style="color:var(--green)">Si</span></td>
+    <td><span class="badge no">No Efectiva</span></td>
+    <td style="color:var(--muted)">Cliente Abandono</td>
+    <td><span style="color:var(--red)">No</span></td><td><span style="color:var(--red)">No</span></td><td><span style="color:var(--red)">No</span></td><td><span style="color:var(--red)">No</span></td>
+    <td style="color:var(--muted)">Sin definir</td>
+    <td style="max-width:150px;overflow:hidden;text-overflow:ellipsis;color:var(--muted);font-size:11px" title="La agente ofrece opción de adquirir un producto que incluye PF y CL sin verificar antes la disponibilidad de una tienda física basada en el código postal del cliente.">La agente ofrece opción de adquirir un producto qu…</td>
+    <td style="display:flex;gap:4px">
+      <button class="btn btn-secondary" style="padding:3px 8px;font-size:10px" onclick="editRow(14)">✎</button>
+      <button class="btn btn-danger" style="padding:3px 8px;font-size:10px" onclick="deleteRow(14)">✕</button>
+    </td>
+  </tr></tbody>
         </table>
       </div>
     </div>
-    <div class="pagination" id="db-pagination"></div>
+    <div class="pagination" id="db-pagination"><span style="color:var(--muted)">75 registros</span><span style="flex:1"></span><button class="page-btn active" onclick="dbPage=0;renderDB()">1</button><button class="page-btn " onclick="dbPage=1;renderDB()">2</button><button class="page-btn " onclick="dbPage=2;renderDB()">3</button><button class="page-btn " onclick="dbPage=3;renderDB()">4</button><button class="page-btn " onclick="dbPage=4;renderDB()">5</button><button class="page-btn" onclick="dbPage++;renderDB()">→</button></div>
   </div>
 
   <!-- GITHUB SETUP -->
@@ -446,7 +1035,15 @@
   <div class="modal" style="width:800px">
     <div class="modal-title">Pegar desde Google Sheets</div>
     <div class="modal-desc">
-      Selecciona las filas nuevas en tu Google Sheet (incluyendo el encabezado si quieres), cópialas con <strong>Ctrl+C</strong> y pégalas abajo con <strong>Ctrl+V</strong>. El dashboard detecta las columnas automáticamente.
+      Copia tus filas de Google Sheets con <strong>Ctrl+C</strong> y pégalas abajo. Puedes pegar <strong>toda la base de datos</strong> para reemplazar todo, o solo las filas nuevas para agregarlas. El encabezado es opcional — el dashboard lo detecta automáticamente.
+    </div>
+    <div style="display:flex;gap:10px;margin-bottom:14px;font-size:12px">
+      <div style="flex:1;background:rgba(22,163,106,.06);border:1px solid rgba(22,163,106,.2);border-radius:6px;padding:10px 12px;color:var(--green)">
+        <strong>+ Agregar nuevas</strong><br><span style="color:var(--muted)">Mantiene los datos actuales y agrega solo las filas que no existen aún</span>
+      </div>
+      <div style="flex:1;background:rgba(37,99,235,.06);border:1px solid rgba(37,99,235,.2);border-radius:6px;padding:10px 12px;color:var(--accent)">
+        <strong>↺ Reemplazar todo</strong><br><span style="color:var(--muted)">Borra todo y carga lo que pegaste — ideal para pegar toda tu base de datos</span>
+      </div>
     </div>
 
     <div class="info-box" style="margin-bottom:12px">
@@ -470,7 +1067,8 @@
 
     <div class="modal-actions">
       <button class="btn btn-secondary" onclick="closePasteModal()">Cancelar</button>
-      <button class="btn btn-paste" id="paste-confirm-btn" disabled onclick="confirmPaste()">Importar filas</button>
+      <button class="btn btn-secondary" id="paste-add-btn" disabled="" onclick="confirmPaste('add')" title="Agrega solo las filas nuevas, mantiene las existentes">+ Agregar nuevas</button>
+      <button class="btn btn-primary" id="paste-replace-btn" disabled="" onclick="confirmPaste('replace')" title="Borra todo y reemplaza con lo que pegaste">↺ Reemplazar todo</button>
     </div>
   </div>
 </div>
@@ -507,6 +1105,7 @@ const FIELDS = [
   { key:'tienda',     label:'Tienda Compartida',         type:'select',   opts:['Si','No'] },
   { key:'tel',        label:'Tel Trackeado',             type:'select',   opts:['Si','No'] },
   { key:'canal',      label:'Canal de Preferencia',      type:'select',   opts:['Sin definir','Whatsapp','Llamada','Email','Chat'] },
+  { key:'week',       label:'Semana (ej: Sem 1 Ene)',      type:'text' },
   { key:'comentarios',label:'Comentarios / Feedback',    type:'textarea', full:true },
 ];
 
@@ -526,51 +1125,102 @@ const COL_MAP = {
   'se trackeo numero de telefono?': 'tel', 'se trackeó número de teléfono?': 'tel', 'tel trackeado': 'tel', 'tel': 'tel',
   'canal de preferencia': 'canal', 'canal': 'canal',
   'comentarios / feedback': 'comentarios', 'comentarios': 'comentarios', 'feedback': 'comentarios',
+  'semana': 'week', 'week': 'week', 'semana review': 'week',
 };
 
 // ============================================================
 // SEED DATA
 // ============================================================
 const SEED = [
-  {ticket:'https://payjoy.zendesk.com/agent/tickets/24073370',agent:'Andrea Candiani',solicitud:'Extension',solucion:'Si',oferta:'Si',efectividad:'Podria Mejorar',interesado:'No',razon:'No Aplica',objeciones:'Si',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'Es relevante la forma en que se ofrece esta oferta'},
-  {ticket:'https://payjoy.zendesk.com/agent/tickets/24095988',agent:'Luis Manuel Vite',solicitud:'Extension',solucion:'Si',oferta:'Si',efectividad:'Podria Mejorar',interesado:'No',razon:'No Aplica',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'Se sugiere trabajar en el proceso de venta'},
-  {ticket:'https://payjoy.zendesk.com/agent/tickets/24110425',agent:'Ashley Contreras',solicitud:'Extension',solucion:'Si',oferta:'Si',efectividad:'No Efectiva',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'Se cierra gestión por falta de contacto'},
-  {ticket:'https://payjoy.zendesk.com/agent/tickets/24073384',agent:'Andrea Candiani',solicitud:'Extension',solucion:'Si',oferta:'Si',efectividad:'No Efectiva',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'Si',tel:'No',canal:'Sin definir',comentarios:'Se recomienda brindar más alternativas de tiendas físicas'},
-  {ticket:'https://payjoy.zendesk.com/agent/tickets/24095425',agent:'Andrea Candiani',solicitud:'Consultas de Financiamiento',solucion:'Si',oferta:'Si',efectividad:'No Efectiva',interesado:'Si',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'Cliente interesado en línea de crédito'},
-  {ticket:'https://payjoy.zendesk.com/agent/tickets/24060017',agent:'Andrea De la Torre',solicitud:'Consultas relacionadas a Pagos',solucion:'No',oferta:'Si',efectividad:'Podria Mejorar',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'La agente se enfoca en enviar oferta descuidando la consulta inicial'},
-  {ticket:'https://payjoy.zendesk.com/agent/tickets/24080629',agent:'Andrea De la Torre',solicitud:'Consultas relacionadas a Pagos',solucion:'No',oferta:'Si',efectividad:'Podria Mejorar',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'La agente se enfoca en enviar oferta descuidando la consulta inicial'},
-  {ticket:'https://payjoy.zendesk.com/agent/tickets/24068669',agent:'Andrea De la Torre',solicitud:'Extensión de pagos',solucion:'Si',oferta:'Si',efectividad:'Podria Mejorar',interesado:'Si',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'El cliente se muestra interesado pero no se pregunta el código postal'},
-  {ticket:'https://payjoy.zendesk.com/agent/tickets/24073499',agent:'Ashley Contreras',solicitud:'Extensión de pagos',solucion:'Si',oferta:'Si',efectividad:'No Efectiva',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'Inactividad del cliente desde que se comienza la conversación'},
-  {ticket:'https://payjoy.zendesk.com/agent/tickets/24073665',agent:'Ashley Contreras',solicitud:'Extensión de pagos',solucion:'Si',oferta:'Si',efectividad:'No Efectiva',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'Tiempo de espera a que sea asignado el ticket (14 minutos)'},
-  {ticket:'https://payjoy.zendesk.com/agent/tickets/24081929',agent:'Luis Manuel Vite',solicitud:'Consultas de Financiamiento',solucion:'Si',oferta:'Si',efectividad:'No Efectiva',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'Si',tel:'No',canal:'Sin definir',comentarios:'El agente proporciona tres direcciones de tiendas cercanas'},
-  {ticket:'https://payjoy.zendesk.com/agent/tickets/24082150',agent:'Luis Manuel Vite',solicitud:'Carta de no adeudo',solucion:'Si',oferta:'Si',efectividad:'No Efectiva',interesado:'No',razon:'No Especifico',objeciones:'No',followup:'No',tienda:'Si',tel:'No',canal:'Sin definir',comentarios:'Existe desinterés del cliente en la oferta'},
-  {ticket:'https://payjoy.zendesk.com/agent/tickets/24150082',agent:'Irene Mendez',solicitud:'Consultas relacionadas a Pagos',solucion:'Si',oferta:'Si',efectividad:'No Efectiva',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'La agente ofrece opción sin verificar disponibilidad de tienda'},
-  {ticket:'https://payjoy.zendesk.com/agent/tickets/24171140',agent:'Irene Mendez',solicitud:'Código de pago',solucion:'Si',oferta:'Si',efectividad:'No Efectiva',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'La agente ofrece opción sin verificar disponibilidad de tienda'},
-  {ticket:'https://payjoy.zendesk.com/agent/tickets/24150111',agent:'Irene Mendez',solicitud:'Código de pago',solucion:'Si',oferta:'Si',efectividad:'No Efectiva',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'La agente ofrece opción sin verificar disponibilidad de tienda'},
-  {ticket:'https://payjoy.zendesk.com/agent/tickets/24127323',agent:'Raul Prieto',solicitud:'Extensión de pagos',solucion:'Si',oferta:'No',efectividad:'Podria Mejorar',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'Se deja pasar la oportunidad de enviar oferta'},
-  {ticket:'https://payjoy.zendesk.com/agent/tickets/24149111',agent:'Raul Prieto',solicitud:'Información de servicio',solucion:'Si',oferta:'No',efectividad:'Podria Mejorar',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'Se deja pasar la oportunidad de enviar oferta'},
-  {ticket:'https://payjoy.zendesk.com/agent/tickets/24165972',agent:'Raul Prieto',solicitud:'Extensión de pagos',solucion:'Si',oferta:'Si',efectividad:'No Efectiva',interesado:'No',razon:'No Especifico',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'Existe desinterés del cliente. Nomenclatura incorrecta'},
-  {ticket:'https://payjoy.zendesk.com/agent/tickets/24159996',agent:'Leslie Alvarado',solicitud:'Extensión de pagos',solucion:'Si',oferta:'Si',efectividad:'No Efectiva',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'La agente ofrece sin verificar disponibilidad de tienda'},
-  {ticket:'https://payjoy.zendesk.com/agent/tickets/24159624',agent:'Leslie Alvarado',solicitud:'Extensión de pagos',solucion:'Si',oferta:'Si',efectividad:'Efectiva',interesado:'Si',razon:'No Aplica',objeciones:'Si',followup:'No',tienda:'Si',tel:'No',canal:'Whatsapp',comentarios:'Buena interacción, dando alternativas ante las objeciones'},
-  {ticket:'https://payjoy.zendesk.com/agent/tickets/24080566',agent:'Leslie Alvarado',solicitud:'Pago no reflejado',solucion:'No',oferta:'No',efectividad:'No Efectiva',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'No se envía oferta. Cierre por inactividad'},
-  {ticket:'https://payjoy.zendesk.com/agent/tickets/24115817',agent:'Paulina Reyes',solicitud:'Consultas de Financiamiento',solucion:'Si',oferta:'Si',efectividad:'Efectiva',interesado:'Si',razon:'No Aplica',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'Positiva: Aceptada anteriormente'},
-  {ticket:'https://payjoy.zendesk.com/agent/tickets/24113474',agent:'Paulina Reyes',solicitud:'Extensión de pagos',solucion:'Si',oferta:'Si',efectividad:'No Efectiva',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'Existe desinterés del cliente'},
-  {ticket:'https://payjoy.zendesk.com/agent/tickets/24080048',agent:'Paulina Reyes',solicitud:'Consultas relacionadas a Pagos',solucion:'No',oferta:'Si',efectividad:'No Efectiva',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'La agente se enfoca en enviar oferta descuidando la consulta inicial'},
-  {ticket:'https://payjoy.zendesk.com/agent/tickets/24091014',agent:'Veronica Cruz',solicitud:'Extensión de pagos',solucion:'Si',oferta:'Si',efectividad:'Podria Mejorar',interesado:'Si',razon:'No Aplica',objeciones:'No',followup:'No',tienda:'Si',tel:'Si',canal:'Whatsapp',comentarios:'Hizo falta aclarar que primero es necesario liquidar el financiamiento'},
-  {ticket:'https://payjoy.zendesk.com/agent/tickets/24088479',agent:'Veronica Cruz',solicitud:'Extensión de pagos',solucion:'Si',oferta:'No',efectividad:'No Efectiva',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'No se envía oferta por antecedente de pagos no reflejados'},
-  {ticket:'https://payjoy.zendesk.com/agent/tickets/24163283',agent:'Veronica Cruz',solicitud:'Extensión de pagos',solucion:'Si',oferta:'Si',efectividad:'No Efectiva',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'Cierre por inactividad'},
+  {id:'0',ticket:'https://payjoy.zendesk.com/agent/tickets/24073370',agent:'Andrea Candiani',solicitud:'Extensión de pagos',solucion:'Si',oferta:'Si',efectividad:'Podria Mejorar',interesado:'No',razon:'No Aplica',objeciones:'Si',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'Es relevante la forma en que se ofrece esta oferta, quiza los mensajes en que se comparte la información, si recordamos que es una labor de venta, esta debe de ser vistoza, pero siempre viendola como una oportunidad en cada gestión',week:''},
+  {id:'1',ticket:'https://payjoy.zendesk.com/agent/tickets/24095988',agent:'Luis Manuel Vite',solicitud:'Extensión de pagos',solucion:'Si',oferta:'Si',efectividad:'Podria Mejorar',interesado:'No',razon:'No Aplica',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'Se sugiere trabajar en el proceso de venta y majeno de objeciones, en la primer negativa del cliente, dejan de intentar hacer la labor de venta',week:''},
+  {id:'2',ticket:'https://payjoy.zendesk.com/agent/tickets/24110425',agent:'Ashley Contreras',solicitud:'Extensión de pagos',solucion:'Si',oferta:'Si',efectividad:'No Efectiva',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'Se cierra gestión por falta de contacto',week:''},
+  {id:'3',ticket:'https://payjoy.zendesk.com/agent/tickets/24073384',agent:'Andrea Candiani',solicitud:'Extensión de pagos',solucion:'Si',oferta:'Si',efectividad:'No Efectiva',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'Si',tel:'No',canal:'Sin definir',comentarios:'Se recomienda brindar más alternativas de tiendas físicas cercanas al cliente.',week:''},
+  {id:'4',ticket:'https://payjoy.zendesk.com/agent/tickets/24095425',agent:'Andrea Candiani',solicitud:'Consultas de Financiamiento',solucion:'Si',oferta:'Si',efectividad:'No Efectiva',interesado:'Si',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'Cliente interesado en línea de crédito. Cierre por inactividad.',week:''},
+  {id:'5',ticket:'https://payjoy.zendesk.com/agent/tickets/24060017',agent:'Andrea De la Torre',solicitud:'Consultas relacionadas a Pagos',solucion:'No',oferta:'Si',efectividad:'Podria Mejorar',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'La agente se enfoca en enviar oferta y esperar respuesta del cliente, descuidando la resolución a la consulta inicial del cliente.',week:''},
+  {id:'6',ticket:'https://payjoy.zendesk.com/agent/tickets/24080629',agent:'Andrea De la Torre',solicitud:'Consultas relacionadas a Pagos',solucion:'No',oferta:'Si',efectividad:'Podria Mejorar',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'La agente se enfoca en enviar oferta y esperar respuesta del cliente, descuidando la resolución a la consulta inicial del cliente.',week:''},
+  {id:'7',ticket:'https://payjoy.zendesk.com/agent/tickets/24068669',agent:'Andrea De la Torre',solicitud:'Extensión de pagos',solucion:'Si',oferta:'Si',efectividad:'Podria Mejorar',interesado:'Si',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'El cliente se muestra interesado pero no se pregunta el código postal para ofrecer dirección de tiendas cercanas.',week:''},
+  {id:'8',ticket:'https://payjoy.zendesk.com/agent/tickets/24073499',agent:'Ashley Contreras',solicitud:'Extensión de pagos',solucion:'Si',oferta:'Si',efectividad:'No Efectiva',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'Existe inactividad del cliente desde que se comienza la conversación con el agente, influyendo el tiempo de espera a que sea asignado el ticket (9 minutos).',week:''},
+  {id:'9',ticket:'https://payjoy.zendesk.com/agent/tickets/24073665/events',agent:'Ashley Contreras',solicitud:'Extensión de pagos',solucion:'Si',oferta:'Si',efectividad:'No Efectiva',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'Existe inactividad del cliente desde que se comienza la conversación con el agente, influyendo el tiempo de espera a que sea asignado el ticket (14 minutos).',week:''},
+  {id:'10',ticket:'https://payjoy.zendesk.com/agent/tickets/24081929',agent:'Luis Manuel Vite',solicitud:'Consultas de Financiamiento',solucion:'Si',oferta:'Si',efectividad:'No Efectiva',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'Si',tel:'No',canal:'Sin definir',comentarios:'El agente proporciona tres direcciones de tiendas cercanas antes de cierre por inactividad.',week:''},
+  {id:'11',ticket:'https://payjoy.zendesk.com/agent/tickets/24082150',agent:'Luis Manuel Vite',solicitud:'Carta de no adeudo',solucion:'Si',oferta:'Si',efectividad:'No Efectiva',interesado:'No',razon:'No Especifico',objeciones:'No',followup:'No',tienda:'Si',tel:'No',canal:'Sin definir',comentarios:'Existe desinterés del cliente en la oferta, enfocándose únicamente en recibir información acerca de su consulta.',week:''},
+  {id:'12',ticket:'https://payjoy.zendesk.com/agent/tickets/24150082',agent:'Irene Mendez',solicitud:'Consultas relacionadas a Pagos',solucion:'Si',oferta:'Si',efectividad:'No Efectiva',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'La agente ofrece opción de adquirir un producto que incluye PF y CL sin verificar antes la disponibilidad de una tienda física basada en el código postal del cliente.',week:''},
+  {id:'13',ticket:'https://payjoy.zendesk.com/agent/tickets/24171140',agent:'Irene Mendez',solicitud:'Código de pago',solucion:'Si',oferta:'Si',efectividad:'No Efectiva',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'La agente ofrece opción de adquirir un producto que incluye PF y CL sin verificar antes la disponibilidad de una tienda física basada en el código postal del cliente.',week:''},
+  {id:'14',ticket:'https://payjoy.zendesk.com/agent/tickets/24150111',agent:'Irene Mendez',solicitud:'Código de pago',solucion:'Si',oferta:'Si',efectividad:'No Efectiva',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'La agente ofrece opción de adquirir un producto que incluye PF y CL sin verificar antes la disponibilidad de una tienda física basada en el código postal del cliente.',week:''},
+  {id:'15',ticket:'https://payjoy.zendesk.com/agent/tickets/24127323',agent:'Raul Prieto',solicitud:'Extensión de pagos',solucion:'Si',oferta:'No',efectividad:'Podria Mejorar',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'Se deja pasar la oportunidad de enviar oferta al cliente, enfocándose únicamente en la atención a la consulta.',week:''},
+  {id:'16',ticket:'https://payjoy.zendesk.com/agent/tickets/24149111',agent:'Raul Prieto',solicitud:'Información de servicio',solucion:'Si',oferta:'No',efectividad:'Podria Mejorar',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'Se deja pasar la oportunidad de enviar oferta al cliente, enfocándose únicamente en la atención a la consulta.',week:''},
+  {id:'17',ticket:'https://payjoy.zendesk.com/agent/tickets/24165972',agent:'Raul Prieto',solicitud:'Extensión de pagos',solucion:'Si',oferta:'Si',efectividad:'No Efectiva',interesado:'No',razon:'No Especifico',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'Existe desinterés del cliente en la oferta, enfocándose únicamente en recibir información acerca de su consulta. La nomenclatura que se deja en el perfil del cliente no corresponde con la correcta, la cual debió ser MX-CX-ORG-NI.',week:''},
+  {id:'18',ticket:'https://payjoy.zendesk.com/agent/tickets/24159996',agent:'Leslie Alvarado',solicitud:'Extensión de pagos',solucion:'Si',oferta:'Si',efectividad:'No Efectiva',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'La agente ofrece opción de adquirir un producto que incluye PF y CL sin verificar antes la disponibilidad de una tienda física basada en el código postal del cliente.',week:''},
+  {id:'19',ticket:'https://payjoy.zendesk.com/agent/tickets/24159624',agent:'Leslie Alvarado',solicitud:'Extensión de pagos',solucion:'Si',oferta:'Si',efectividad:'Efectiva',interesado:'Si',razon:'No Aplica',objeciones:'Si',followup:'No',tienda:'Si',tel:'No',canal:'Whatsapp',comentarios:'Buena interacción por parte de la agente, dando alternativas ante las objeciones de la lejanía de la localización de las primeras tiendas compartidas.',week:''},
+  {id:'20',ticket:'https://payjoy.zendesk.com/agent/tickets/24080566',agent:'Leslie Alvarado',solicitud:'Pago no reflejado - No reflejado inmediatamen',solucion:'No',oferta:'No',efectividad:'No Efectiva',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'No se envía oferta debido a que el motivo de contacto es por un pago no reflejado. Cierre por inactividad.',week:''},
+  {id:'21',ticket:'https://payjoy.zendesk.com/agent/tickets/24115817',agent:'Paulina Reyes',solicitud:'Consultas de Financiamiento',solucion:'Si',oferta:'Si',efectividad:'Efectiva',interesado:'Si',razon:'No Aplica',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'Positiva: Aceptada anteriormente. Se elige opción como "El cliente abandonó sin interacción" que no corresponde a recibimiento de oferta dado en la interacción.',week:''},
+  {id:'22',ticket:'https://payjoy.zendesk.com/agent/tickets/24113474',agent:'Paulina Reyes',solicitud:'Extensión de pagos',solucion:'Si',oferta:'Si',efectividad:'No Efectiva',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'Existe desinterés del cliente en la oferta, enfocándose únicamente en recibir información acerca de su consulta.',week:''},
+  {id:'23',ticket:'https://payjoy.zendesk.com/agent/tickets/24080048',agent:'Paulina Reyes',solicitud:'Consultas relacionadas a Pagos',solucion:'No',oferta:'Si',efectividad:'No Efectiva',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'La agente se enfoca en enviar oferta y esperar respuesta del cliente, descuidando la resolución a la consulta inicial del cliente.',week:''},
+  {id:'24',ticket:'https://payjoy.zendesk.com/agent/tickets/24091014',agent:'Veronica Cruz',solicitud:'Extensión de pagos',solucion:'Si',oferta:'Si',efectividad:'Podria Mejorar',interesado:'Si',razon:'No Aplica',objeciones:'No',followup:'No',tienda:'Si',tel:'Si',canal:'Whatsapp',comentarios:'Se logra brindar información y guía para acceder a opciones en tienda virtual. Sin embargo, hizo falta aclarar al cliente que primero es necesario liquidar el financiamiento actual.',week:''},
+  {id:'25',ticket:'https://payjoy.zendesk.com/agent/tickets/24088479',agent:'Veronica Cruz',solicitud:'Extensión de pagos',solucion:'Si',oferta:'No',efectividad:'No Efectiva',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'No se envía oferta debido a que existe antecedente de pagos no reflejados en el perfil del cliente.',week:''},
+  {id:'26',ticket:'https://payjoy.zendesk.com/agent/tickets/24163283',agent:'Veronica Cruz',solicitud:'Extensión de pagos',solucion:'Si',oferta:'Si',efectividad:'No Efectiva',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'Cierre por inactividad.',week:''},
+  {id:'27',ticket:'https://payjoy.zendesk.com/agent/tickets/24223081',agent:'Ashley Contreras',solicitud:'Extensión de pagos',solucion:'No',oferta:'Si',efectividad:'No Efectiva',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'Cierre por inactividad.',week:''},
+  {id:'28',ticket:'https://payjoy.zendesk.com/agent/tickets/24223345',agent:'Ashley Contreras',solicitud:'Consultas relacionadas a Pagos',solucion:'No',oferta:'Cliente Abandono',efectividad:'No Efectiva',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'Cierre por inactividad.',week:''},
+  {id:'29',ticket:'https://payjoy.zendesk.com/agent/tickets/24192300',agent:'Luis Manuel Vite',solicitud:'Extensión de pagos',solucion:'Si',oferta:'No',efectividad:'No Efectiva',interesado:'No',razon:'No Aplica',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'No se realiza la oferta',week:''},
+  {id:'30',ticket:'https://payjoy.zendesk.com/agent/tickets/24183863',agent:'Amaury Garcia',solicitud:'Solicitud Inicial',solucion:'Si',oferta:'Si',efectividad:'Efectiva',interesado:'Si',razon:'No Aplica',objeciones:'Si',followup:'Si',tienda:'Online',tel:'No',canal:'Sin definir',comentarios:'Se ofertan ambos productos, solo desea la CL',week:''},
+  {id:'31',ticket:'https://payjoy.zendesk.com/agent/tickets/24183919',agent:'Amaury Garcia',solicitud:'Extensión de pagos',solucion:'No',oferta:'Si',efectividad:'Efectiva',interesado:'Si',razon:'No Aplica',objeciones:'Si',followup:'Si',tienda:'Si',tel:'No',canal:'Sin definir',comentarios:'Cliente interesado en ambos pero abandona, se omite cumplir la solcitud inical.',week:''},
+  {id:'32',ticket:'https://payjoy.zendesk.com/agent/tickets/24299049',agent:'Andrea Candiani',solicitud:'Extensión de pagos',solucion:'Si',oferta:'Si',efectividad:'No Efectiva',interesado:'No',razon:'No Especifico',objeciones:'Si',followup:'',tienda:'Online',tel:'No',canal:'Sin definir',comentarios:'se contacta por extensión sin embargo se cierra el chat ya que no se pudo brindar por incumplimiento',week:''},
+  {id:'33',ticket:'https://payjoy.zendesk.com/agent/tickets/24240391',agent:'Luis Manuel Vite',solicitud:'Extensión de pagos',solucion:'Si',oferta:'Si',efectividad:'No Efectiva',interesado:'No',razon:'No Especifico',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'Extensión de pago',week:''},
+  {id:'34',ticket:'https://payjoy.zendesk.com/agent/tickets/24185409',agent:'Ashley Contreras',solicitud:'Extensión de pagos',solucion:'No',oferta:'Cliente Abandono',efectividad:'No Efectiva',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'Cliente Abandona',week:''},
+  {id:'35',ticket:'https://payjoy.zendesk.com/agent/tickets/24289469',agent:'Andrea De la Torre',solicitud:'Extensión de pagos',solucion:'Si',oferta:'Si',efectividad:'No Efectiva',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'Cierre por inactividad.',week:''},
+  {id:'36',ticket:'https://payjoy.zendesk.com/agent/tickets/24191203',agent:'Andrea De la Torre',solicitud:'Consultas de Financiamiento',solucion:'No',oferta:'Si',efectividad:'Podria Mejorar',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'Cliente interesado en CL. La agente ofrece opción de adquirir un producto que incluye PF y CL sin verificar antes la disponibilidad de una tienda física basada en el código postal del cliente. Captura de pantalla 2026-03-31 112716.png',week:''},
+  {id:'37',ticket:'https://payjoy.zendesk.com/agent/tickets/24191177',agent:'Andrea De la Torre',solicitud:'Consultas de Financiamiento',solucion:'Si',oferta:'Si',efectividad:'Efectiva',interesado:'Si',razon:'No Aplica',objeciones:'No',followup:'Si',tienda:'No',tel:'Si',canal:'Whatsapp',comentarios:'Cierre por inactividad.',week:''},
+  {id:'38',ticket:'https://payjoy.zendesk.com/agent/tickets/24240307',agent:'Irene Mendez',solicitud:'Extensión de pagos',solucion:'Si',oferta:'Si',efectividad:'Podria Mejorar',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'Aparecen dos resultados de tiendas cercanas con base en el código postal del cliente. Se pudo mejorar la interacción proporcionando primero estos datos, y después preguntar si existe alguna plaza comercial cercana para un posible manejo de objeción. Captura de pantalla 2026-03-31 112308.png',week:''},
+  {id:'39',ticket:'https://payjoy.zendesk.com/agent/tickets/24240645',agent:'Irene Mendez',solicitud:'Consultas relacionadas a Pagos',solucion:'Si',oferta:'Si',efectividad:'No Efectiva',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'Se brinda oferta al detectar que el pago sí se reflejó correctamente. Cierre por inactividad.',week:''},
+  {id:'40',ticket:'https://payjoy.zendesk.com/agent/tickets/24222448',agent:'Irene Mendez',solicitud:'Consultas relacionadas a Pagos',solucion:'Si',oferta:'Si',efectividad:'Efectiva',interesado:'Si',razon:'No Aplica',objeciones:'No',followup:'No',tienda:'Si',tel:'Si',canal:'Sin definir',comentarios:'El enlace de la dirección de la primera tienda compartida no existe, por lo cual el cliente pregunta por otras plazas, a lo que responde la agente que no las ubica en sistema. Sin embargo, al realizar la búsqueda en HEX sí aparecen resultados de las últimas plazas indagadas. Se sugiere evitar incluir el link de dashboard al compartir domicilio de una tienda, ya que se trata de información interna y el cliente no tiene acceso a la misma. Captura de pantalla 2026-03-30 111604.png',week:''},
+  {id:'41',ticket:'https://payjoy.zendesk.com/agent/tickets/24227184',agent:'Leslie Alvarado',solicitud:'Extensión de pagos',solucion:'Si',oferta:'Si',efectividad:'Podria Mejorar',interesado:'Si',razon:'No Aplica',objeciones:'No',followup:'No',tienda:'Si',tel:'Si',canal:'Sin definir',comentarios:'Se muestra interés del cliente por adquirir un nuevo equipo telefónico pero de modelo Iphone el cual no está disponible en PayJoy. No existe script para este tipo de objeción en el archivo, el cual se podría incluir.',week:''},
+  {id:'42',ticket:'https://payjoy.zendesk.com/agent/tickets/24227032',agent:'Leslie Alvarado',solicitud:'Extensión de pagos',solucion:'Si',oferta:'Si',efectividad:'No Efectiva',interesado:'No',razon:'No Especifico',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'Existe desinterés del cliente en la oferta, enfocándose únicamente en recibir información acerca de su consulta.',week:''},
+  {id:'43',ticket:'https://payjoy.zendesk.com/agent/tickets/24188940',agent:'Leslie Alvarado',solicitud:'Extensión de pagos',solucion:'Si',oferta:'Si',efectividad:'Efectiva',interesado:'Si',razon:'No Aplica',objeciones:'No',followup:'No',tienda:'Si',tel:'Si',canal:'Llamada',comentarios:'Interacción correcta.',week:''},
+  {id:'44',ticket:'https://payjoy.zendesk.com/agent/tickets/24222798',agent:'Raul Prieto',solicitud:'Extensión de pagos',solucion:'Si',oferta:'Si',efectividad:'Podria Mejorar',interesado:'Si',razon:'No Aplica',objeciones:'Si',followup:'No',tienda:'Si',tel:'Si',canal:'Llamada',comentarios:'El agente muestra manejo de objeción ante el modelo de marca Iphone que requiere el cliente, ofreciendo modelos de marca Samsung. Sin embargo, menciona el modelo F25 que no se localiza en el archivo SCRIPT. Adicionalmente, ndica que no existe tienda cercana conforme al CP, siendo que se ubicó una. En este caso podría mejorar verificando ciudad, y confirmando la ubicada en zona centro. Captura de pantalla 2026-03-31 124359.png',week:''},
+  {id:'45',ticket:'https://payjoy.zendesk.com/agent/tickets/24222883',agent:'Raul Prieto',solicitud:'Consultas de Financiamiento',solucion:'Si',oferta:'Si',efectividad:'Efectiva',interesado:'Si',razon:'No Aplica',objeciones:'No',followup:'No',tienda:'Si',tel:'Si',canal:'Sin definir',comentarios:'El cliente está interesado en adquriri un préstamo a pesar de la oferta para un nuevo financiamiento de equipo telefónico.',week:''},
+  {id:'46',ticket:'https://payjoy.zendesk.com/agent/tickets/24223069',agent:'Raul Prieto',solicitud:'Extensión de pagos',solucion:'Si',oferta:'Si',efectividad:'No Efectiva',interesado:'Si',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'Cliente expresa interés por un nuevo equipo marca Samusng pero abandona antes de dar más datos.',week:''},
+  {id:'47',ticket:'https://payjoy.zendesk.com/agent/tickets/24282847',agent:'Veronica Cruz',solicitud:'Extensión de pagos',solucion:'Si',oferta:'Si',efectividad:'Podria Mejorar',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'Sin definir',comentarios:'No se cumple con el flujo correcto para el envío de la oferta, ya que lo hace al final del conversación, después de haber resuelto la consulta inicial del cliente.',week:''},
+  {id:'48',ticket:'https://payjoy.zendesk.com/agent/tickets/24222915',agent:'Veronica Cruz',solicitud:'Extensión de pagos',solucion:'Si',oferta:'Si',efectividad:'Efectiva',interesado:'Si',razon:'No Aplica',objeciones:'No',followup:'No',tienda:'Si',tel:'Si',canal:'Whatsapp',comentarios:'Se ofrece link para tienda virtual.',week:''},
+  {id:'49',ticket:'https://payjoy.zendesk.com/agent/tickets/24201572',agent:'Veronica Cruz',solicitud:'Extensión de pagos',solucion:'Si',oferta:'Si',efectividad:'Podria Mejorar',interesado:'Si',razon:'No Aplica',objeciones:'No',followup:'No',tienda:'No',tel:'Si',canal:'Whatsapp',comentarios:'Se brinda extensión de pago al cliente por 4 horas a pesar de que ya se le había otorgado una el día anterior por 24 horas sin cumplimiento de promesa.',week:''},
+  {id:'50',ticket:'https://payjoy.zendesk.com/agent/tickets/24207567',agent:'Andrea Candiani',solicitud:'¿Cómo transferir?',solucion:'Si',oferta:'Si',efectividad:'No Efectiva',interesado:'No',razon:'No Especifico',objeciones:'Si',followup:'No',tienda:'No',tel:'No',canal:'Sin especificar',comentarios:'Cliente abandona ya que no sabe que institución corresponde a mercado pago',week:''},
+  {id:'51',ticket:'https://payjoy.zendesk.com/agent/tickets/24207567',agent:'Andrea Candiani',solicitud:'extensión',solucion:'Si',oferta:'Si',efectividad:'Efectiva',interesado:'Si',razon:'No Aplica',objeciones:'Si',followup:'Si',tienda:'Si',tel:'Si',canal:'WhatsApp',comentarios:'Excelente manejo de la interacción',week:''},
+  {id:'52',ticket:'https://payjoy.zendesk.com/agent/tickets/24278084',agent:'Luis Manuel Vite',solicitud:'Uso de la CL',solucion:'Si',oferta:'Si',efectividad:'Efectiva',interesado:'Si',razon:'No Aplica',objeciones:'Si',followup:'Si',tienda:'Online',tel:'No',canal:'No',comentarios:'cliente desea utilizar la cl',week:''},
+  {id:'53',ticket:'https://payjoy.zendesk.com/agent/tickets/24203483',agent:'Ashley Contreras',solicitud:'extensión',solucion:'Si',oferta:'Si',efectividad:'No Efectiva',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'Cliente Abandono',tel:'No',canal:'No',comentarios:'Solicita extensión, sin embargo abandona la gestión.',week:''},
+  {id:'54',ticket:'https://payjoy.zendesk.com/agent/tickets/24185166',agent:'Paulina Reyes',solicitud:'Uso de la CL',solucion:'Si',oferta:'Si',efectividad:'No Efectiva',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'Si',followup:'No',tienda:'Cliente Abandono',tel:'No',canal:'No',comentarios:'info. CL',week:''},
+  {id:'55',ticket:'https://payjoy.zendesk.com/agent/tickets/24397605',agent:'Luis Manuel Vite',solicitud:'Uso de la CL',solucion:'Si',oferta:'Si',efectividad:'Efectiva',interesado:'Si',razon:'No Aplica',objeciones:'Si',followup:'Si',tienda:'Si',tel:'No',canal:'No',comentarios:'Adquiere equipo por medio de superpacman',week:''},
+  {id:'56',ticket:'https://payjoy.zendesk.com/agent/tickets/24348972',agent:'Luis Manuel Vite',solicitud:'Codigo de pago.',solucion:'No',oferta:'Si',efectividad:'No Efectiva',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'Cliente Abandono',tel:'Cliente Abandono',canal:'No',comentarios:'Cliente abandona cuando se le menciona que será canalizado a cobranza',week:''},
+  {id:'57',ticket:'https://payjoy.zendesk.com/agent/tickets/24348726',agent:'Luis Manuel Vite',solicitud:'Uso de la CL',solucion:'No',oferta:'Si',efectividad:'No Efectiva',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'Cliente Abandono',tel:'Cliente Abandono',canal:'No',comentarios:'Cliente abandona',week:''},
+  {id:'58',ticket:'https://payjoy.zendesk.com/agent/tickets/24340371',agent:'Ashley Contreras',solicitud:'Extensión',solucion:'Si',oferta:'Si',efectividad:'No Efectiva',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'Cliente Abandono',tel:'Cliente Abandono',canal:'No',comentarios:'Cliente abandona',week:''},
+  {id:'59',ticket:'https://payjoy.zendesk.com/agent/tickets/24359597',agent:'Ashley Contreras',solicitud:'Interes en el descuento de la oferta de origination',solucion:'Si',oferta:'Si',efectividad:'No Efectiva',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'Si',followup:'Si',tienda:'Cliente Abandono',tel:'Cliente Abandono',canal:'No',comentarios:'Cliente abandona, estaba interesado en la CL',week:''},
+  {id:'60',ticket:'https://payjoy.zendesk.com/agent/tickets/24309073',agent:'Andrea De la Torre',solicitud:'Extensión',solucion:'Si',oferta:'Si',efectividad:'No Efectiva',interesado:'No',razon:'No Aplica',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'No',comentarios:'cliente deseaba una extesnión, no presta atención a la oferta',week:''},
+  {id:'61',ticket:'https://payjoy.zendesk.com/agent/tickets/24346362',agent:'Andrea De la Torre',solicitud:'Error general/app no funciona',solucion:'Si',oferta:'Si',efectividad:'No Efectiva',interesado:'No',razon:'No Aplica',objeciones:'Si',followup:'No',tienda:'No',tel:'No',canal:'No',comentarios:'Cliente no interesada en la oferta',week:''},
+  {id:'62',ticket:'https://payjoy.zendesk.com/agent/tickets/24404506',agent:'Irene Mendez',solicitud:'Extensión',solucion:'Si',oferta:'Si',efectividad:'No Efectiva',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'No',comentarios:'Cliente abandona',week:''},
+  {id:'63',ticket:'https://payjoy.zendesk.com/agent/tickets/24337065',agent:'Irene Mendez',solicitud:'Consultas relacionadas a Pagos',solucion:'Si',oferta:'Si',efectividad:'Efectiva',interesado:'No',razon:'No Aplica',objeciones:'Si',followup:'No',tienda:'No',tel:'No',canal:'No',comentarios:'Cliente no interesada en la oferta',week:''},
+  {id:'64',ticket:'https://payjoy.zendesk.com/agent/tickets/24403641',agent:'Irene Mendez',solicitud:'Extensión',solucion:'Si',oferta:'Si',efectividad:'Efectiva',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'Cliente Abandono',tel:'Cliente Abandono',canal:'No',comentarios:'Cliente abandona',week:''},
+  {id:'65',ticket:'https://payjoy.zendesk.com/agent/tickets/24386694',agent:'Raul Prieto',solicitud:'Extensión',solucion:'Si',oferta:'Si',efectividad:'Efectiva',interesado:'Si',razon:'Cantidad Aprobado',objeciones:'Si',followup:'Si',tienda:'Si',tel:'No',canal:'desea acudir a tienda',comentarios:'Excelente ejeución por parte de Raúl',week:''},
+  {id:'66',ticket:'https://payjoy.zendesk.com/agent/tickets/24386786',agent:'Raul Prieto',solicitud:'Extensión',solucion:'Si',oferta:'Si',efectividad:'Efectiva',interesado:'Si',razon:'No Especifico',objeciones:'Si',followup:'Si',tienda:'Online',tel:'Si',canal:'ONLINE',comentarios:'Excelente ejeución por parte de Raúl',week:''},
+  {id:'67',ticket:'https://payjoy.zendesk.com/agent/tickets/24321011',agent:'Raul Prieto',solicitud:'Extensión',solucion:'Si',oferta:'Si',efectividad:'No Efectiva',interesado:'No',razon:'No Aplica',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'No se especifica',comentarios:'Cliente desempleado',week:''},
+  {id:'68',ticket:'https://payjoy.zendesk.com/agent/tickets/24311250',agent:'Paulina Reyes',solicitud:'Extensión',solucion:'No',oferta:'Si',efectividad:'No Efectiva',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'Cliente Abandono',tel:'Cliente Abandono',canal:'No se especifica',comentarios:'Cliente abandona',week:''},
+  {id:'69',ticket:'https://payjoy.zendesk.com/agent/tickets/24310539',agent:'Paulina Reyes',solicitud:'CAMBIO DE SIM',solucion:'Si',oferta:'Si',efectividad:'No Efectiva',interesado:'No',razon:'No Especifico',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'No se especifica',comentarios:'Cliente no especifica y no se hace seguimiento.',week:''},
+  {id:'70',ticket:'https://payjoy.zendesk.com/agent/tickets/24348263',agent:'Leslie Alvarado',solicitud:'Extensión',solucion:'Si',oferta:'Si',efectividad:'No Efectiva',interesado:'No',razon:'No Especifico',objeciones:'No',followup:'No',tienda:'No',tel:'No',canal:'No se especifica',comentarios:'Cliente no interesado',week:''},
+  {id:'71',ticket:'https://payjoy.zendesk.com/agent/tickets/24351782',agent:'Leslie Alvarado',solicitud:'Desea credito',solucion:'Si',oferta:'Si',efectividad:'Efectiva',interesado:'Si',razon:'No Especifico',objeciones:'Si',followup:'Si',tienda:'Si',tel:'Si',canal:'No se especifica',comentarios:'Excelente gestion',week:''},
+  {id:'72',ticket:'https://payjoy.zendesk.com/agent/tickets/24365844',agent:'Leslie Alvarado',solicitud:'Extensión',solucion:'Si',oferta:'Si',efectividad:'Efectiva',interesado:'Si',razon:'No Aplica',objeciones:'Si',followup:'Si',tienda:'Si',tel:'Si',canal:'Acepto la oferta en otro chat',comentarios:'Acepto la oferta en otro chat',week:''},
+  {id:'73',ticket:'https://payjoy.zendesk.com/agent/tickets/24309408',agent:'Veronica Cruz',solicitud:'Extensión',solucion:'Si',oferta:'Si',efectividad:'No Efectiva',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'No',tel:'Cliente Abandono',canal:'No se especifica',comentarios:'Cliente abandona',week:''},
+  {id:'74',ticket:'https://payjoy.zendesk.com/agent/tickets/24359369',agent:'Veronica Cruz',solicitud:'Extensión',solucion:'Si',oferta:'Si',efectividad:'No Efectiva',interesado:'Cliente Abandono',razon:'Cliente Abandono',objeciones:'No',followup:'No',tienda:'No',tel:'Cliente Abandono',canal:'No se especifica',comentarios:'Cliente abandona',week:''}
 ];
 
 // ============================================================
 // STATE
 // ============================================================
 function loadData() {
-  try { const s = localStorage.getItem('orig_data_v3'); return s ? JSON.parse(s) : SEED.map((r,i)=>({...r,id:i})); }
+  try { const s = localStorage.getItem('orig_data_v5'); return s ? JSON.parse(s) : SEED.map((r,i)=>({...r,id:i})); }
   catch(e) { return SEED.map((r,i)=>({...r,id:i})); }
 }
-function saveData(d) { try { localStorage.setItem('orig_data_v3', JSON.stringify(d)); } catch(e){} }
+function saveData(d) { try { localStorage.setItem('orig_data_v5', JSON.stringify(d)); } catch(e){} }
 
 let DATA = loadData();
+// BAKED DATA
+if(!localStorage.getItem('orig_data_v5')){ localStorage.setItem('orig_data_v5', '[{"id":0,"ticket":"https://payjoy.zendesk.com/agent/tickets/24073370","agent":"Andrea Candiani","solicitud":"Extensión de pagos","solucion":"Si","oferta":"Si","efectividad":"Podria Mejorar","interesado":"No","razon":"No Aplica","objeciones":"Si","followup":"No","tienda":"No","tel":"No","canal":"Sin definir","comentarios":"Es relevante la forma en que se ofrece esta oferta, quiza los mensajes en que se comparte la información, si recordamos que es una labor de venta, esta debe de ser vistoza, pero siempre viendola como una oportunidad en cada gestión","week":""},{"id":1,"ticket":"https://payjoy.zendesk.com/agent/tickets/24095988","agent":"Luis Manuel Vite","solicitud":"Extensión de pagos","solucion":"Si","oferta":"Si","efectividad":"Podria Mejorar","interesado":"No","razon":"No Aplica","objeciones":"No","followup":"No","tienda":"No","tel":"No","canal":"Sin definir","comentarios":"Se sugiere trabajar en el proceso de venta y majeno de objeciones, en la primer negativa del cliente, dejan de intentar hacer la labor de venta","week":""},{"id":2,"ticket":"https://payjoy.zendesk.com/agent/tickets/24110425","agent":"Ashley Contreras","solicitud":"Extensión de pagos","solucion":"Si","oferta":"Si","efectividad":"No Efectiva","interesado":"Cliente Abandono","razon":"Cliente Abandono","objeciones":"No","followup":"No","tienda":"No","tel":"No","canal":"Sin definir","comentarios":"Se cierra gestión por falta de contacto","week":""},{"id":3,"ticket":"https://payjoy.zendesk.com/agent/tickets/24073384","agent":"Andrea Candiani","solicitud":"Extensión de pagos","solucion":"Si","oferta":"Si","efectividad":"No Efectiva","interesado":"Cliente Abandono","razon":"Cliente Abandono","objeciones":"No","followup":"No","tienda":"Si","tel":"No","canal":"Sin definir","comentarios":"Se recomienda brindar más alternativas de tiendas físicas cercanas al cliente.","week":""},{"id":4,"ticket":"https://payjoy.zendesk.com/agent/tickets/24095425","agent":"Andrea Candiani","solicitud":"Consultas de Financiamiento","solucion":"Si","oferta":"Si","efectividad":"No Efectiva","interesado":"Si","razon":"Cliente Abandono","objeciones":"No","followup":"No","tienda":"No","tel":"No","canal":"Sin definir","comentarios":"Cliente interesado en línea de crédito. Cierre por inactividad.","week":""},{"id":5,"ticket":"https://payjoy.zendesk.com/agent/tickets/24060017","agent":"Andrea De la Torre","solicitud":"Consultas relacionadas a Pagos","solucion":"No","oferta":"Si","efectividad":"Podria Mejorar","interesado":"Cliente Abandono","razon":"Cliente Abandono","objeciones":"No","followup":"No","tienda":"No","tel":"No","canal":"Sin definir","comentarios":"La agente se enfoca en enviar oferta y esperar respuesta del cliente, descuidando la resolución a la consulta inicial del cliente.","week":""},{"id":6,"ticket":"https://payjoy.zendesk.com/agent/tickets/24080629","agent":"Andrea De la Torre","solicitud":"Consultas relacionadas a Pagos","solucion":"No","oferta":"Si","efectividad":"Podria Mejorar","interesado":"Cliente Abandono","razon":"Cliente Abandono","objeciones":"No","followup":"No","tienda":"No","tel":"No","canal":"Sin definir","comentarios":"La agente se enfoca en enviar oferta y esperar respuesta del cliente, descuidando la resolución a la consulta inicial del cliente.","week":""},{"id":7,"ticket":"https://payjoy.zendesk.com/agent/tickets/24068669","agent":"Andrea De la Torre","solicitud":"Extensión de pagos","solucion":"Si","oferta":"Si","efectividad":"Podria Mejorar","interesado":"Si","razon":"Cliente Abandono","objeciones":"No","followup":"No","tienda":"No","tel":"No","canal":"Sin definir","comentarios":"El cliente se muestra interesado pero no se pregunta el código postal para ofrecer dirección de tiendas cercanas.","week":""},{"id":8,"ticket":"https://payjoy.zendesk.com/agent/tickets/24073499","agent":"Ashley Contreras","solicitud":"Extensión de pagos","solucion":"Si","oferta":"Si","efectividad":"No Efectiva","interesado":"Cliente Abandono","razon":"Cliente Abandono","objeciones":"No","followup":"No","tienda":"No","tel":"No","canal":"Sin definir","comentarios":"Existe inactividad del cliente desde que se comienza la conversación con el agente, influyendo el tiempo de espera a que sea asignado el ticket (9 minutos).","week":""},{"id":9,"ticket":"https://payjoy.zendesk.com/agent/tickets/24073665/events","agent":"Ashley Contreras","solicitud":"Extensión de pagos","solucion":"Si","oferta":"Si","efectividad":"No Efectiva","interesado":"Cliente Abandono","razon":"Cliente Abandono","objeciones":"No","followup":"No","tienda":"No","tel":"No","canal":"Sin definir","comentarios":"Existe inactividad del cliente desde que se comienza la conversación con el agente, influyendo el tiempo de espera a que sea asignado el ticket (14 minutos).","week":""},{"id":10,"ticket":"https://payjoy.zendesk.com/agent/tickets/24081929","agent":"Luis Manuel Vite","solicitud":"Consultas de Financiamiento","solucion":"Si","oferta":"Si","efectividad":"No Efectiva","interesado":"Cliente Abandono","razon":"Cliente Abandono","objeciones":"No","followup":"No","tienda":"Si","tel":"No","canal":"Sin definir","comentarios":"El agente proporciona tres direcciones de tiendas cercanas antes de cierre por inactividad.","week":""},{"id":11,"ticket":"https://payjoy.zendesk.com/agent/tickets/24082150","agent":"Luis Manuel Vite","solicitud":"Carta de no adeudo","solucion":"Si","oferta":"Si","efectividad":"No Efectiva","interesado":"No","razon":"No Especifico","objeciones":"No","followup":"No","tienda":"Si","tel":"No","canal":"Sin definir","comentarios":"Existe desinterés del cliente en la oferta, enfocándose únicamente en recibir información acerca de su consulta.","week":""},{"id":12,"ticket":"https://payjoy.zendesk.com/agent/tickets/24150082","agent":"Irene Mendez","solicitud":"Consultas relacionadas a Pagos","solucion":"Si","oferta":"Si","efectividad":"No Efectiva","interesado":"Cliente Abandono","razon":"Cliente Abandono","objeciones":"No","followup":"No","tienda":"No","tel":"No","canal":"Sin definir","comentarios":"La agente ofrece opción de adquirir un producto que incluye PF y CL sin verificar antes la disponibilidad de una tienda física basada en el código postal del cliente.","week":""},{"id":13,"ticket":"https://payjoy.zendesk.com/agent/tickets/24171140","agent":"Irene Mendez","solicitud":"Código de pago","solucion":"Si","oferta":"Si","efectividad":"No Efectiva","interesado":"Cliente Abandono","razon":"Cliente Abandono","objeciones":"No","followup":"No","tienda":"No","tel":"No","canal":"Sin definir","comentarios":"La agente ofrece opción de adquirir un producto que incluye PF y CL sin verificar antes la disponibilidad de una tienda física basada en el código postal del cliente.","week":""},{"id":14,"ticket":"https://payjoy.zendesk.com/agent/tickets/24150111","agent":"Irene Mendez","solicitud":"Código de pago","solucion":"Si","oferta":"Si","efectividad":"No Efectiva","interesado":"Cliente Abandono","razon":"Cliente Abandono","objeciones":"No","followup":"No","tienda":"No","tel":"No","canal":"Sin definir","comentarios":"La agente ofrece opción de adquirir un producto que incluye PF y CL sin verificar antes la disponibilidad de una tienda física basada en el código postal del cliente.","week":""},{"id":15,"ticket":"https://payjoy.zendesk.com/agent/tickets/24127323","agent":"Raul Prieto","solicitud":"Extensión de pagos","solucion":"Si","oferta":"No","efectividad":"Podria Mejorar","interesado":"Cliente Abandono","razon":"Cliente Abandono","objeciones":"No","followup":"No","tienda":"No","tel":"No","canal":"Sin definir","comentarios":"Se deja pasar la oportunidad de enviar oferta al cliente, enfocándose únicamente en la atención a la consulta.","week":""},{"id":16,"ticket":"https://payjoy.zendesk.com/agent/tickets/24149111","agent":"Raul Prieto","solicitud":"Información de servicio","solucion":"Si","oferta":"No","efectividad":"Podria Mejorar","interesado":"Cliente Abandono","razon":"Cliente Abandono","objeciones":"No","followup":"No","tienda":"No","tel":"No","canal":"Sin definir","comentarios":"Se deja pasar la oportunidad de enviar oferta al cliente, enfocándose únicamente en la atención a la consulta.","week":""},{"id":17,"ticket":"https://payjoy.zendesk.com/agent/tickets/24165972","agent":"Raul Prieto","solicitud":"Extensión de pagos","solucion":"Si","oferta":"Si","efectividad":"No Efectiva","interesado":"No","razon":"No Especifico","objeciones":"No","followup":"No","tienda":"No","tel":"No","canal":"Sin definir","comentarios":"Existe desinterés del cliente en la oferta, enfocándose únicamente en recibir información acerca de su consulta. La nomenclatura que se deja en el perfil del cliente no corresponde con la correcta, la cual debió ser MX-CX-ORG-NI.","week":""},{"id":18,"ticket":"https://payjoy.zendesk.com/agent/tickets/24159996","agent":"Leslie Alvarado","solicitud":"Extensión de pagos","solucion":"Si","oferta":"Si","efectividad":"No Efectiva","interesado":"Cliente Abandono","razon":"Cliente Abandono","objeciones":"No","followup":"No","tienda":"No","tel":"No","canal":"Sin definir","comentarios":"La agente ofrece opción de adquirir un producto que incluye PF y CL sin verificar antes la disponibilidad de una tienda física basada en el código postal del cliente.","week":""},{"id":19,"ticket":"https://payjoy.zendesk.com/agent/tickets/24159624","agent":"Leslie Alvarado","solicitud":"Extensión de pagos","solucion":"Si","oferta":"Si","efectividad":"Efectiva","interesado":"Si","razon":"No Aplica","objeciones":"Si","followup":"No","tienda":"Si","tel":"No","canal":"Whatsapp","comentarios":"Buena interacción por parte de la agente, dando alternativas ante las objeciones de la lejanía de la localización de las primeras tiendas compartidas.","week":""},{"id":20,"ticket":"https://payjoy.zendesk.com/agent/tickets/24080566","agent":"Leslie Alvarado","solicitud":"Pago no reflejado - No reflejado inmediatamen","solucion":"No","oferta":"No","efectividad":"No Efectiva","interesado":"Cliente Abandono","razon":"Cliente Abandono","objeciones":"No","followup":"No","tienda":"No","tel":"No","canal":"Sin definir","comentarios":"No se envía oferta debido a que el motivo de contacto es por un pago no reflejado. Cierre por inactividad.","week":""},{"id":21,"ticket":"https://payjoy.zendesk.com/agent/tickets/24115817","agent":"Paulina Reyes","solicitud":"Consultas de Financiamiento","solucion":"Si","oferta":"Si","efectividad":"Efectiva","interesado":"Si","razon":"No Aplica","objeciones":"No","followup":"No","tienda":"No","tel":"No","canal":"Sin definir","comentarios":"Positiva: Aceptada anteriormente. Se elige opción como \"El cliente abandonó sin interacción\" que no corresponde a recibimiento de oferta dado en la interacción.","week":""},{"id":22,"ticket":"https://payjoy.zendesk.com/agent/tickets/24113474","agent":"Paulina Reyes","solicitud":"Extensión de pagos","solucion":"Si","oferta":"Si","efectividad":"No Efectiva","interesado":"Cliente Abandono","razon":"Cliente Abandono","objeciones":"No","followup":"No","tienda":"No","tel":"No","canal":"Sin definir","comentarios":"Existe desinterés del cliente en la oferta, enfocándose únicamente en recibir información acerca de su consulta.","week":""},{"id":23,"ticket":"https://payjoy.zendesk.com/agent/tickets/24080048","agent":"Paulina Reyes","solicitud":"Consultas relacionadas a Pagos","solucion":"No","oferta":"Si","efectividad":"No Efectiva","interesado":"Cliente Abandono","razon":"Cliente Abandono","objeciones":"No","followup":"No","tienda":"No","tel":"No","canal":"Sin definir","comentarios":"La agente se enfoca en enviar oferta y esperar respuesta del cliente, descuidando la resolución a la consulta inicial del cliente.","week":""},{"id":24,"ticket":"https://payjoy.zendesk.com/agent/tickets/24091014","agent":"Veronica Cruz","solicitud":"Extensión de pagos","solucion":"Si","oferta":"Si","efectividad":"Podria Mejorar","interesado":"Si","razon":"No Aplica","objeciones":"No","followup":"No","tienda":"Si","tel":"Si","canal":"Whatsapp","comentarios":"Se logra brindar información y guía para acceder a opciones en tienda virtual. Sin embargo, hizo falta aclarar al cliente que primero es necesario liquidar el financiamiento actual.","week":""},{"id":25,"ticket":"https://payjoy.zendesk.com/agent/tickets/24088479","agent":"Veronica Cruz","solicitud":"Extensión de pagos","solucion":"Si","oferta":"No","efectividad":"No Efectiva","interesado":"Cliente Abandono","razon":"Cliente Abandono","objeciones":"No","followup":"No","tienda":"No","tel":"No","canal":"Sin definir","comentarios":"No se envía oferta debido a que existe antecedente de pagos no reflejados en el perfil del cliente.","week":""},{"id":26,"ticket":"https://payjoy.zendesk.com/agent/tickets/24163283","agent":"Veronica Cruz","solicitud":"Extensión de pagos","solucion":"Si","oferta":"Si","efectividad":"No Efectiva","interesado":"Cliente Abandono","razon":"Cliente Abandono","objeciones":"No","followup":"No","tienda":"No","tel":"No","canal":"Sin definir","comentarios":"Cierre por inactividad.","week":""},{"id":27,"ticket":"https://payjoy.zendesk.com/agent/tickets/24223081","agent":"Ashley Contreras","solicitud":"Extensión de pagos","solucion":"No","oferta":"Si","efectividad":"No Efectiva","interesado":"Cliente Abandono","razon":"Cliente Abandono","objeciones":"No","followup":"No","tienda":"No","tel":"No","canal":"Sin definir","comentarios":"Cierre por inactividad.","week":""},{"id":28,"ticket":"https://payjoy.zendesk.com/agent/tickets/24223345","agent":"Ashley Contreras","solicitud":"Consultas relacionadas a Pagos","solucion":"No","oferta":"Cliente Abandono","efectividad":"No Efectiva","interesado":"Cliente Abandono","razon":"Cliente Abandono","objeciones":"No","followup":"No","tienda":"No","tel":"No","canal":"Sin definir","comentarios":"Cierre por inactividad.","week":""},{"id":29,"ticket":"https://payjoy.zendesk.com/agent/tickets/24192300","agent":"Luis Manuel Vite","solicitud":"Extensión de pagos","solucion":"Si","oferta":"No","efectividad":"No Efectiva","interesado":"No","razon":"No Aplica","objeciones":"No","followup":"No","tienda":"No","tel":"No","canal":"Sin definir","comentarios":"No se realiza la oferta","week":""},{"id":30,"ticket":"https://payjoy.zendesk.com/agent/tickets/24183863","agent":"Amaury Garcia","solicitud":"Solicitud Inicial","solucion":"Si","oferta":"Si","efectividad":"Efectiva","interesado":"Si","razon":"No Aplica","objeciones":"Si","followup":"Si","tienda":"Online","tel":"No","canal":"Sin definir","comentarios":"Se ofertan ambos productos, solo desea la CL","week":""},{"id":31,"ticket":"https://payjoy.zendesk.com/agent/tickets/24183919","agent":"Amaury Garcia","solicitud":"Extensión de pagos","solucion":"No","oferta":"Si","efectividad":"Efectiva","interesado":"Si","razon":"No Aplica","objeciones":"Si","followup":"Si","tienda":"Si","tel":"No","canal":"Sin definir","comentarios":"Cliente interesado en ambos pero abandona, se omite cumplir la solcitud inical.","week":""},{"id":32,"ticket":"https://payjoy.zendesk.com/agent/tickets/24299049","agent":"Andrea Candiani","solicitud":"Extensión de pagos","solucion":"Si","oferta":"Si","efectividad":"No Efectiva","interesado":"No","razon":"No Especifico","objeciones":"Si","followup":"","tienda":"Online","tel":"No","canal":"Sin definir","comentarios":"se contacta por extensión sin embargo se cierra el chat ya que no se pudo brindar por incumplimiento","week":""},{"id":33,"ticket":"https://payjoy.zendesk.com/agent/tickets/24240391","agent":"Luis Manuel Vite","solicitud":"Extensión de pagos","solucion":"Si","oferta":"Si","efectividad":"No Efectiva","interesado":"No","razon":"No Especifico","objeciones":"No","followup":"No","tienda":"No","tel":"No","canal":"Sin definir","comentarios":"Extensión de pago","week":""},{"id":34,"ticket":"https://payjoy.zendesk.com/agent/tickets/24185409","agent":"Ashley Contreras","solicitud":"Extensión de pagos","solucion":"No","oferta":"Cliente Abandono","efectividad":"No Efectiva","interesado":"Cliente Abandono","razon":"Cliente Abandono","objeciones":"No","followup":"No","tienda":"No","tel":"No","canal":"Sin definir","comentarios":"Cliente Abandona","week":""},{"id":35,"ticket":"https://payjoy.zendesk.com/agent/tickets/24289469","agent":"Andrea De la Torre","solicitud":"Extensión de pagos","solucion":"Si","oferta":"Si","efectividad":"No Efectiva","interesado":"Cliente Abandono","razon":"Cliente Abandono","objeciones":"No","followup":"No","tienda":"No","tel":"No","canal":"Sin definir","comentarios":"Cierre por inactividad.","week":""},{"id":36,"ticket":"https://payjoy.zendesk.com/agent/tickets/24191203","agent":"Andrea De la Torre","solicitud":"Consultas de Financiamiento","solucion":"No","oferta":"Si","efectividad":"Podria Mejorar","interesado":"Cliente Abandono","razon":"Cliente Abandono","objeciones":"No","followup":"No","tienda":"No","tel":"No","canal":"Sin definir","comentarios":"Cliente interesado en CL. La agente ofrece opción de adquirir un producto que incluye PF y CL sin verificar antes la disponibilidad de una tienda física basada en el código postal del cliente. Captura de pantalla 2026-03-31 112716.png","week":""},{"id":37,"ticket":"https://payjoy.zendesk.com/agent/tickets/24191177","agent":"Andrea De la Torre","solicitud":"Consultas de Financiamiento","solucion":"Si","oferta":"Si","efectividad":"Efectiva","interesado":"Si","razon":"No Aplica","objeciones":"No","followup":"Si","tienda":"No","tel":"Si","canal":"Whatsapp","comentarios":"Cierre por inactividad.","week":""},{"id":38,"ticket":"https://payjoy.zendesk.com/agent/tickets/24240307","agent":"Irene Mendez","solicitud":"Extensión de pagos","solucion":"Si","oferta":"Si","efectividad":"Podria Mejorar","interesado":"Cliente Abandono","razon":"Cliente Abandono","objeciones":"No","followup":"No","tienda":"No","tel":"No","canal":"Sin definir","comentarios":"Aparecen dos resultados de tiendas cercanas con base en el código postal del cliente. Se pudo mejorar la interacción proporcionando primero estos datos, y después preguntar si existe alguna plaza comercial cercana para un posible manejo de objeción. Captura de pantalla 2026-03-31 112308.png","week":""},{"id":39,"ticket":"https://payjoy.zendesk.com/agent/tickets/24240645","agent":"Irene Mendez","solicitud":"Consultas relacionadas a Pagos","solucion":"Si","oferta":"Si","efectividad":"No Efectiva","interesado":"Cliente Abandono","razon":"Cliente Abandono","objeciones":"No","followup":"No","tienda":"No","tel":"No","canal":"Sin definir","comentarios":"Se brinda oferta al detectar que el pago sí se reflejó correctamente. Cierre por inactividad.","week":""},{"id":40,"ticket":"https://payjoy.zendesk.com/agent/tickets/24222448","agent":"Irene Mendez","solicitud":"Consultas relacionadas a Pagos","solucion":"Si","oferta":"Si","efectividad":"Efectiva","interesado":"Si","razon":"No Aplica","objeciones":"No","followup":"No","tienda":"Si","tel":"Si","canal":"Sin definir","comentarios":"El enlace de la dirección de la primera tienda compartida no existe, por lo cual el cliente pregunta por otras plazas, a lo que responde la agente que no las ubica en sistema. Sin embargo, al realizar la búsqueda en HEX sí aparecen resultados de las últimas plazas indagadas. Se sugiere evitar incluir el link de dashboard al compartir domicilio de una tienda, ya que se trata de información interna y el cliente no tiene acceso a la misma. Captura de pantalla 2026-03-30 111604.png","week":""},{"id":41,"ticket":"https://payjoy.zendesk.com/agent/tickets/24227184","agent":"Leslie Alvarado","solicitud":"Extensión de pagos","solucion":"Si","oferta":"Si","efectividad":"Podria Mejorar","interesado":"Si","razon":"No Aplica","objeciones":"No","followup":"No","tienda":"Si","tel":"Si","canal":"Sin definir","comentarios":"Se muestra interés del cliente por adquirir un nuevo equipo telefónico pero de modelo Iphone el cual no está disponible en PayJoy. No existe script para este tipo de objeción en el archivo, el cual se podría incluir.","week":""},{"id":42,"ticket":"https://payjoy.zendesk.com/agent/tickets/24227032","agent":"Leslie Alvarado","solicitud":"Extensión de pagos","solucion":"Si","oferta":"Si","efectividad":"No Efectiva","interesado":"No","razon":"No Especifico","objeciones":"No","followup":"No","tienda":"No","tel":"No","canal":"Sin definir","comentarios":"Existe desinterés del cliente en la oferta, enfocándose únicamente en recibir información acerca de su consulta.","week":""},{"id":43,"ticket":"https://payjoy.zendesk.com/agent/tickets/24188940","agent":"Leslie Alvarado","solicitud":"Extensión de pagos","solucion":"Si","oferta":"Si","efectividad":"Efectiva","interesado":"Si","razon":"No Aplica","objeciones":"No","followup":"No","tienda":"Si","tel":"Si","canal":"Llamada","comentarios":"Interacción correcta.","week":""},{"id":44,"ticket":"https://payjoy.zendesk.com/agent/tickets/24222798","agent":"Raul Prieto","solicitud":"Extensión de pagos","solucion":"Si","oferta":"Si","efectividad":"Podria Mejorar","interesado":"Si","razon":"No Aplica","objeciones":"Si","followup":"No","tienda":"Si","tel":"Si","canal":"Llamada","comentarios":"El agente muestra manejo de objeción ante el modelo de marca Iphone que requiere el cliente, ofreciendo modelos de marca Samsung. Sin embargo, menciona el modelo F25 que no se localiza en el archivo SCRIPT. Adicionalmente, ndica que no existe tienda cercana conforme al CP, siendo que se ubicó una. En este caso podría mejorar verificando ciudad, y confirmando la ubicada en zona centro. Captura de pantalla 2026-03-31 124359.png","week":""},{"id":45,"ticket":"https://payjoy.zendesk.com/agent/tickets/24222883","agent":"Raul Prieto","solicitud":"Consultas de Financiamiento","solucion":"Si","oferta":"Si","efectividad":"Efectiva","interesado":"Si","razon":"No Aplica","objeciones":"No","followup":"No","tienda":"Si","tel":"Si","canal":"Sin definir","comentarios":"El cliente está interesado en adquriri un préstamo a pesar de la oferta para un nuevo financiamiento de equipo telefónico.","week":""},{"id":46,"ticket":"https://payjoy.zendesk.com/agent/tickets/24223069","agent":"Raul Prieto","solicitud":"Extensión de pagos","solucion":"Si","oferta":"Si","efectividad":"No Efectiva","interesado":"Si","razon":"Cliente Abandono","objeciones":"No","followup":"No","tienda":"No","tel":"No","canal":"Sin definir","comentarios":"Cliente expresa interés por un nuevo equipo marca Samusng pero abandona antes de dar más datos.","week":""},{"id":47,"ticket":"https://payjoy.zendesk.com/agent/tickets/24282847","agent":"Veronica Cruz","solicitud":"Extensión de pagos","solucion":"Si","oferta":"Si","efectividad":"Podria Mejorar","interesado":"Cliente Abandono","razon":"Cliente Abandono","objeciones":"No","followup":"No","tienda":"No","tel":"No","canal":"Sin definir","comentarios":"No se cumple con el flujo correcto para el envío de la oferta, ya que lo hace al final del conversación, después de haber resuelto la consulta inicial del cliente.","week":""},{"id":48,"ticket":"https://payjoy.zendesk.com/agent/tickets/24222915","agent":"Veronica Cruz","solicitud":"Extensión de pagos","solucion":"Si","oferta":"Si","efectividad":"Efectiva","interesado":"Si","razon":"No Aplica","objeciones":"No","followup":"No","tienda":"Si","tel":"Si","canal":"Whatsapp","comentarios":"Se ofrece link para tienda virtual.","week":""},{"id":49,"ticket":"https://payjoy.zendesk.com/agent/tickets/24201572","agent":"Veronica Cruz","solicitud":"Extensión de pagos","solucion":"Si","oferta":"Si","efectividad":"Podria Mejorar","interesado":"Si","razon":"No Aplica","objeciones":"No","followup":"No","tienda":"No","tel":"Si","canal":"Whatsapp","comentarios":"Se brinda extensión de pago al cliente por 4 horas a pesar de que ya se le había otorgado una el día anterior por 24 horas sin cumplimiento de promesa.","week":""},{"id":50,"ticket":"https://payjoy.zendesk.com/agent/tickets/24207567","agent":"Andrea Candiani","solicitud":"¿Cómo transferir?","solucion":"Si","oferta":"Si","efectividad":"No Efectiva","interesado":"No","razon":"No Especifico","objeciones":"Si","followup":"No","tienda":"No","tel":"No","canal":"Sin especificar","comentarios":"Cliente abandona ya que no sabe que institución corresponde a mercado pago","week":""},{"id":51,"ticket":"https://payjoy.zendesk.com/agent/tickets/24207567","agent":"Andrea Candiani","solicitud":"extensión","solucion":"Si","oferta":"Si","efectividad":"Efectiva","interesado":"Si","razon":"No Aplica","objeciones":"Si","followup":"Si","tienda":"Si","tel":"Si","canal":"WhatsApp","comentarios":"Excelente manejo de la interacción","week":""},{"id":52,"ticket":"https://payjoy.zendesk.com/agent/tickets/24278084","agent":"Luis Manuel Vite","solicitud":"Uso de la CL","solucion":"Si","oferta":"Si","efectividad":"Efectiva","interesado":"Si","razon":"No Aplica","objeciones":"Si","followup":"Si","tienda":"Online","tel":"No","canal":"No","comentarios":"cliente desea utilizar la cl","week":""},{"id":53,"ticket":"https://payjoy.zendesk.com/agent/tickets/24203483","agent":"Ashley Contreras","solicitud":"extensión","solucion":"Si","oferta":"Si","efectividad":"No Efectiva","interesado":"Cliente Abandono","razon":"Cliente Abandono","objeciones":"No","followup":"No","tienda":"Cliente Abandono","tel":"No","canal":"No","comentarios":"Solicita extensión, sin embargo abandona la gestión.","week":""},{"id":54,"ticket":"https://payjoy.zendesk.com/agent/tickets/24185166","agent":"Paulina Reyes","solicitud":"Uso de la CL","solucion":"Si","oferta":"Si","efectividad":"No Efectiva","interesado":"Cliente Abandono","razon":"Cliente Abandono","objeciones":"Si","followup":"No","tienda":"Cliente Abandono","tel":"No","canal":"No","comentarios":"info. CL","week":""},{"id":55,"ticket":"https://payjoy.zendesk.com/agent/tickets/24397605","agent":"Luis Manuel Vite","solicitud":"Uso de la CL","solucion":"Si","oferta":"Si","efectividad":"Efectiva","interesado":"Si","razon":"No Aplica","objeciones":"Si","followup":"Si","tienda":"Si","tel":"No","canal":"No","comentarios":"Adquiere equipo por medio de superpacman","week":""},{"id":56,"ticket":"https://payjoy.zendesk.com/agent/tickets/24348972","agent":"Luis Manuel Vite","solicitud":"Codigo de pago.","solucion":"No","oferta":"Si","efectividad":"No Efectiva","interesado":"Cliente Abandono","razon":"Cliente Abandono","objeciones":"No","followup":"No","tienda":"Cliente Abandono","tel":"Cliente Abandono","canal":"No","comentarios":"Cliente abandona cuando se le menciona que será canalizado a cobranza","week":""},{"id":57,"ticket":"https://payjoy.zendesk.com/agent/tickets/24348726","agent":"Luis Manuel Vite","solicitud":"Uso de la CL","solucion":"No","oferta":"Si","efectividad":"No Efectiva","interesado":"Cliente Abandono","razon":"Cliente Abandono","objeciones":"No","followup":"No","tienda":"Cliente Abandono","tel":"Cliente Abandono","canal":"No","comentarios":"Cliente abandona","week":""},{"id":58,"ticket":"https://payjoy.zendesk.com/agent/tickets/24340371","agent":"Ashley Contreras","solicitud":"Extensión","solucion":"Si","oferta":"Si","efectividad":"No Efectiva","interesado":"Cliente Abandono","razon":"Cliente Abandono","objeciones":"No","followup":"No","tienda":"Cliente Abandono","tel":"Cliente Abandono","canal":"No","comentarios":"Cliente abandona","week":""},{"id":59,"ticket":"https://payjoy.zendesk.com/agent/tickets/24359597","agent":"Ashley Contreras","solicitud":"Interes en el descuento de la oferta de origination","solucion":"Si","oferta":"Si","efectividad":"No Efectiva","interesado":"Cliente Abandono","razon":"Cliente Abandono","objeciones":"Si","followup":"Si","tienda":"Cliente Abandono","tel":"Cliente Abandono","canal":"No","comentarios":"Cliente abandona, estaba interesado en la CL","week":""},{"id":60,"ticket":"https://payjoy.zendesk.com/agent/tickets/24309073","agent":"Andrea De la Torre","solicitud":"Extensión","solucion":"Si","oferta":"Si","efectividad":"No Efectiva","interesado":"No","razon":"No Aplica","objeciones":"No","followup":"No","tienda":"No","tel":"No","canal":"No","comentarios":"cliente deseaba una extesnión, no presta atención a la oferta","week":""},{"id":61,"ticket":"https://payjoy.zendesk.com/agent/tickets/24346362","agent":"Andrea De la Torre","solicitud":"Error general/app no funciona","solucion":"Si","oferta":"Si","efectividad":"No Efectiva","interesado":"No","razon":"No Aplica","objeciones":"Si","followup":"No","tienda":"No","tel":"No","canal":"No","comentarios":"Cliente no interesada en la oferta","week":""},{"id":62,"ticket":"https://payjoy.zendesk.com/agent/tickets/24404506","agent":"Irene Mendez","solicitud":"Extensión","solucion":"Si","oferta":"Si","efectividad":"No Efectiva","interesado":"Cliente Abandono","razon":"Cliente Abandono","objeciones":"No","followup":"No","tienda":"No","tel":"No","canal":"No","comentarios":"Cliente abandona","week":""},{"id":63,"ticket":"https://payjoy.zendesk.com/agent/tickets/24337065","agent":"Irene Mendez","solicitud":"Consultas relacionadas a Pagos","solucion":"Si","oferta":"Si","efectividad":"Efectiva","interesado":"No","razon":"No Aplica","objeciones":"Si","followup":"No","tienda":"No","tel":"No","canal":"No","comentarios":"Cliente no interesada en la oferta","week":""},{"id":64,"ticket":"https://payjoy.zendesk.com/agent/tickets/24403641","agent":"Irene Mendez","solicitud":"Extensión","solucion":"Si","oferta":"Si","efectividad":"Efectiva","interesado":"Cliente Abandono","razon":"Cliente Abandono","objeciones":"No","followup":"No","tienda":"Cliente Abandono","tel":"Cliente Abandono","canal":"No","comentarios":"Cliente abandona","week":""},{"id":65,"ticket":"https://payjoy.zendesk.com/agent/tickets/24386694","agent":"Raul Prieto","solicitud":"Extensión","solucion":"Si","oferta":"Si","efectividad":"Efectiva","interesado":"Si","razon":"Cantidad Aprobado","objeciones":"Si","followup":"Si","tienda":"Si","tel":"No","canal":"desea acudir a tienda","comentarios":"Excelente ejeución por parte de Raúl","week":""},{"id":66,"ticket":"https://payjoy.zendesk.com/agent/tickets/24386786","agent":"Raul Prieto","solicitud":"Extensión","solucion":"Si","oferta":"Si","efectividad":"Efectiva","interesado":"Si","razon":"No Especifico","objeciones":"Si","followup":"Si","tienda":"Online","tel":"Si","canal":"ONLINE","comentarios":"Excelente ejeución por parte de Raúl","week":""},{"id":67,"ticket":"https://payjoy.zendesk.com/agent/tickets/24321011","agent":"Raul Prieto","solicitud":"Extensión","solucion":"Si","oferta":"Si","efectividad":"No Efectiva","interesado":"No","razon":"No Aplica","objeciones":"No","followup":"No","tienda":"No","tel":"No","canal":"No se especifica","comentarios":"Cliente desempleado","week":""},{"id":68,"ticket":"https://payjoy.zendesk.com/agent/tickets/24311250","agent":"Paulina Reyes","solicitud":"Extensión","solucion":"No","oferta":"Si","efectividad":"No Efectiva","interesado":"Cliente Abandono","razon":"Cliente Abandono","objeciones":"No","followup":"No","tienda":"Cliente Abandono","tel":"Cliente Abandono","canal":"No se especifica","comentarios":"Cliente abandona","week":""},{"id":69,"ticket":"https://payjoy.zendesk.com/agent/tickets/24310539","agent":"Paulina Reyes","solicitud":"CAMBIO DE SIM","solucion":"Si","oferta":"Si","efectividad":"No Efectiva","interesado":"No","razon":"No Especifico","objeciones":"No","followup":"No","tienda":"No","tel":"No","canal":"No se especifica","comentarios":"Cliente no especifica y no se hace seguimiento.","week":""},{"id":70,"ticket":"https://payjoy.zendesk.com/agent/tickets/24348263","agent":"Leslie Alvarado","solicitud":"Extensión","solucion":"Si","oferta":"Si","efectividad":"No Efectiva","interesado":"No","razon":"No Especifico","objeciones":"No","followup":"No","tienda":"No","tel":"No","canal":"No se especifica","comentarios":"Cliente no interesado","week":""},{"id":71,"ticket":"https://payjoy.zendesk.com/agent/tickets/24351782","agent":"Leslie Alvarado","solicitud":"Desea credito","solucion":"Si","oferta":"Si","efectividad":"Efectiva","interesado":"Si","razon":"No Especifico","objeciones":"Si","followup":"Si","tienda":"Si","tel":"Si","canal":"No se especifica","comentarios":"Excelente gestion","week":""},{"id":72,"ticket":"https://payjoy.zendesk.com/agent/tickets/24365844","agent":"Leslie Alvarado","solicitud":"Extensión","solucion":"Si","oferta":"Si","efectividad":"Efectiva","interesado":"Si","razon":"No Aplica","objeciones":"Si","followup":"Si","tienda":"Si","tel":"Si","canal":"Acepto la oferta en otro chat","comentarios":"Acepto la oferta en otro chat","week":""},{"id":73,"ticket":"https://payjoy.zendesk.com/agent/tickets/24309408","agent":"Veronica Cruz","solicitud":"Extensión","solucion":"Si","oferta":"Si","efectividad":"No Efectiva","interesado":"Cliente Abandono","razon":"Cliente Abandono","objeciones":"No","followup":"No","tienda":"No","tel":"Cliente Abandono","canal":"No se especifica","comentarios":"Cliente abandona","week":""},{"id":74,"ticket":"https://payjoy.zendesk.com/agent/tickets/24359369","agent":"Veronica Cruz","solicitud":"Extensión","solucion":"Si","oferta":"Si","efectividad":"No Efectiva","interesado":"Cliente Abandono","razon":"Cliente Abandono","objeciones":"No","followup":"No","tienda":"No","tel":"Cliente Abandono","canal":"No se especifica","comentarios":"Cliente abandona","week":""}]'); }
 let dbPage = 0;
 const PER_PAGE = 15;
 let editId = null;
@@ -629,14 +1279,34 @@ function compute(rows) {
 // ============================================================
 // RENDER
 // ============================================================
+function getActiveRows() {
+  const wf = document.getElementById('filter-week')?.value || '';
+  const af = document.getElementById('filter-agent-global')?.value || '';
+  return DATA.filter(r => (!wf || r.week === wf) && (!af || r.agent === af));
+}
+
+function populateGlobalFilters() {
+  const wSel = document.getElementById('filter-week');
+  const aSel = document.getElementById('filter-agent-global');
+  if (!wSel || !aSel) return;
+  const curW = wSel.value, curA = aSel.value;
+  const weeks = [...new Set(DATA.map(r=>r.week).filter(Boolean))].sort();
+  const agents = [...new Set(DATA.map(r=>r.agent).filter(Boolean))].sort();
+  wSel.innerHTML = '<option value="">Todas las semanas</option>' + weeks.map(w=>`<option value="${w}" ${w===curW?'selected':''}>${w}</option>`).join('');
+  aSel.innerHTML = '<option value="">Todos los agentes</option>' + agents.map(a=>`<option value="${a}" ${a===curA?'selected':''}>${a}</option>`).join('');
+}
+
 function render() {
-  const c = compute(DATA);
+  populateGlobalFilters();
+  const rows = getActiveRows();
+  const c = compute(rows);
 
   const now = new Date();
   const ws = new Date(now); ws.setDate(now.getDate()-now.getDay()+1);
   const we = new Date(ws); we.setDate(ws.getDate()+6);
   const fmt = d => d.toLocaleDateString('es-MX',{day:'2-digit',month:'short'});
-  document.getElementById('week-label').textContent = `${fmt(ws)} – ${fmt(we)}`;
+  const wf = document.getElementById('filter-week')?.value;
+  document.getElementById('week-label').textContent = wf || `${fmt(ws)} – ${fmt(we)}`;
 
   document.getElementById('kpi-total').textContent = c.total;
   document.getElementById('kpi-offers').textContent = c.offersHecho;
@@ -693,7 +1363,7 @@ function renderDonut(c) {
     const large=sweep>Math.PI?1:0;
     paths+=`<path d="M${x1},${y1} A${r},${r} 0 ${large} 1 ${x2},${y2} L${xi2},${yi2} A${inner},${inner} 0 ${large} 0 ${xi1},${yi1} Z" fill="${s.color}" opacity="0.9"/>`;
   });
-  document.getElementById('donut-svg').innerHTML=paths+`<text x="55" y="51" text-anchor="middle" font-family="Syne" font-size="16" font-weight="800" fill="#e8eaf0">${c.efectiva+c.podrMejorar+c.noEfectiva}</text><text x="55" y="63" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#6b7394">reviews</text>`;
+  document.getElementById('donut-svg').innerHTML=paths+`<text x="55" y="51" text-anchor="middle" font-family="Syne" font-size="16" font-weight="800" fill="#1a1d2e">${c.efectiva+c.podrMejorar+c.noEfectiva}</text><text x="55" y="63" text-anchor="middle" font-family="DM Mono" font-size="9" fill="#8892a4">reviews</text>`;
   document.getElementById('donut-legend').innerHTML=segs.map(s=>`<div class="donut-legend-item"><div class="donut-legend-dot" style="background:${s.color}"></div><span style="font-size:12px">${s.label}: <b>${s.val}</b></span></div>`).join('');
   document.getElementById('offer-eff-grid').innerHTML=segs.map(s=>`<div class="offer-eff-cell"><div class="offer-eff-label">${s.label}</div><div class="offer-eff-num" style="color:${s.color}">${s.val}</div></div>`).join('');
 }
@@ -861,6 +1531,7 @@ function populateAgentFilter() {
   sel.innerHTML='<option value="">Todos los agentes</option>'+agents.map(a=>`<option value="${a}" ${a===cur?'selected':''}>${a}</option>`).join('');
 }
 
+
 // ============================================================
 // PASTE FROM SHEETS
 // ============================================================
@@ -868,7 +1539,8 @@ function openPasteModal() {
   document.getElementById('paste-area').value='';
   document.getElementById('paste-preview').style.display='none';
   document.getElementById('paste-error').style.display='none';
-  document.getElementById('paste-confirm-btn').disabled=true;
+  document.getElementById('paste-add-btn').disabled=true;
+  document.getElementById('paste-replace-btn').disabled=true;
   parsedRows=[];
   document.getElementById('paste-modal').classList.add('open');
 }
@@ -881,7 +1553,8 @@ function parsePaste() {
   errEl.style.display='none';
   previewEl.style.display='none';
   parsedRows=[];
-  document.getElementById('paste-confirm-btn').disabled=true;
+  document.getElementById('paste-add-btn').disabled=true;
+  document.getElementById('paste-replace-btn').disabled=true;
 
   if(!raw) return;
 
@@ -925,8 +1598,9 @@ function parsePaste() {
   const fresh=newRows.filter(r=>!r.ticket||!existingTickets.has(r.ticket));
   const dupes=newRows.length-fresh.length;
 
-  parsedRows=fresh;
-  document.getElementById('paste-count').textContent=`${fresh.length} nuevas${dupes>0?` (${dupes} duplicadas omitidas)`:''} `;
+  parsedRows=newRows; // for replace mode: all rows
+  const freshRows=fresh; // for add mode: deduped only
+  document.getElementById('paste-count').textContent=`${newRows.length} filas detectadas${dupes>0?` · ${dupes} ya existen`:''} `;
 
   // Preview table
   const previewCols=['agent','solicitud','oferta','efectividad','followup'];
@@ -943,17 +1617,37 @@ function parsePaste() {
   document.getElementById('preview-body').innerHTML=rows2+(fresh.length>8?`<tr><td colspan="${previewCols.length+1}" style="color:var(--muted);text-align:center;padding:8px">...y ${fresh.length-8} más</td></tr>`:'');
 
   previewEl.style.display='block';
-  if(fresh.length>0) document.getElementById('paste-confirm-btn').disabled=false;
-  else { errEl.textContent='Todas las filas ya existen en la base de datos.'; errEl.style.display='block'; }
+  if(newRows.length>0) {
+    document.getElementById('paste-replace-btn').disabled=false;
+  }
+  if(freshRows.length>0) {
+    document.getElementById('paste-add-btn').disabled=false;
+  }
+  parsedRows = newRows; // store all for replace, fresh subset used in add mode
+  if(fresh.length===0) { errEl.textContent='Todas las filas ya existen en la base de datos.'; errEl.style.display='block'; }
 }
 
-function confirmPaste() {
-  if(!parsedRows.length) return;
-  DATA=[...DATA,...parsedRows];
-  saveData(DATA);
-  closePasteModal();
-  render();
-  showToast(`${parsedRows.length} review${parsedRows.length>1?'s':''} importado${parsedRows.length>1?'s':''} ✓`);
+function confirmPaste(mode) {
+  if(mode==='replace') {
+    if(!confirm(`¿Reemplazar TODOS los datos actuales con ${parsedRows.length} filas nuevas? Esta acción no se puede deshacer.`)) return;
+    // Re-parse without dedup filter so ALL rows from paste are used
+    DATA = parsedRows.map((r,i)=>({...r, id:i}));
+    saveData(DATA);
+    closePasteModal();
+    render();
+    showToast(`Base de datos reemplazada con ${DATA.length} reviews ✓`);
+  } else {
+    if(!parsedRows.length) return;
+    const existingTickets2=new Set(DATA.map(r=>r.ticket));
+    const onlyNew = parsedRows.filter(r=>!r.ticket||!existingTickets2.has(r.ticket));
+    const maxId = DATA.reduce((m,r)=>Math.max(m,r.id||0),0);
+    const toAdd = onlyNew.map((r,i)=>({...r, id:maxId+i+1}));
+    DATA=[...DATA,...toAdd];
+    saveData(DATA);
+    closePasteModal();
+    render();
+    showToast(toAdd.length>0?`${toAdd.length} review${toAdd.length>1?'s':''} agregado${toAdd.length>1?'s':''} ✓`:'Sin filas nuevas para agregar');
+  }
 }
 
 // ============================================================
@@ -1040,8 +1734,29 @@ function showToast(msg,type='success') {
   setTimeout(()=>t.classList.remove('show'),2800);
 }
 
+// ============================================================
+// DOWNLOAD AS index.html
+// ============================================================
+function downloadHTML() {
+  const html = document.documentElement.outerHTML;
+  // Inject current DATA into the SEED so it's baked into the downloaded file
+  const dataJSON = JSON.stringify(DATA);
+  const patched = html.replace(
+    /let DATA = loadData\(\);/,
+    `let DATA = loadData();\n// BAKED DATA\nif(!localStorage.getItem('orig_data_v5')){ localStorage.setItem('orig_data_v5', '${dataJSON.replace(/'/g,"\\'")}'); }`
+  );
+  const blob = new Blob([patched], {type: 'text/html;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'index.html';
+  a.click();
+  URL.revokeObjectURL(a.href);
+  showToast('index.html descargado ✓ — súbelo a GitHub');
+}
+
 // INIT
 render();
 </script>
-</body>
-</html>
+
+
+</body></html>
