@@ -244,24 +244,27 @@
     <div class="week-badge">Semana: <span id="week-label">06-abr – 12-abr</span></div>
     <select class="form-select" id="filter-week" onchange="render()" style="width:160px;font-size:11px;padding:6px 10px"><option value="">Todas las semanas</option></select>
     <select class="form-select" id="filter-agent-global" onchange="render()" style="width:160px;font-size:11px;padding:6px 10px"><option value="">Todos los agentes</option><option value="Amaury Garcia">Amaury Garcia</option><option value="Andrea Candiani">Andrea Candiani</option><option value="Andrea De la Torre">Andrea De la Torre</option><option value="Ashley Contreras">Ashley Contreras</option><option value="Irene Mendez">Irene Mendez</option><option value="Leslie Alvarado">Leslie Alvarado</option><option value="Luis Manuel Vite">Luis Manuel Vite</option><option value="Paulina Reyes">Paulina Reyes</option><option value="Raul Prieto">Raul Prieto</option><option value="Veronica Cruz">Veronica Cruz</option></select>
-    <button class="btn btn-paste" onclick="openPasteModal()">⊕ Pegar desde Sheets</button>
-    <button class="btn btn-secondary" onclick="downloadHTML()">↓ Descargar index.html</button>
-    <button class="btn btn-primary" onclick="openGithubModal()" id="publish-btn">⬆ Publicar en GitHub</button>
+    <div id="admin-controls" style="display:none;align-items:center;gap:10px">
+      <button class="btn btn-paste" onclick="openPasteModal()">⊕ Pegar desde Sheets</button>
+      <button class="btn btn-secondary" onclick="downloadHTML()">↓ Descargar index.html</button>
+      <button class="btn btn-primary" onclick="openGithubModal()">⬆ Publicar en GitHub</button>
+    </div>
+    <button class="btn btn-secondary" id="admin-toggle-btn" onclick="toggleAdmin()" style="font-size:11px;padding:6px 12px">🔒 Admin</button>
   </div>
 </div>
 
 <div class="nav">
-  <button class="nav-tab active" onclick="switchTab('overview',this)">Overview</button>
+  <button class="nav-tab" onclick="switchTab('overview',this)">Overview</button>
   <button class="nav-tab" onclick="switchTab('agents',this)">Agentes</button>
   <button class="nav-tab" onclick="switchTab('followup',this)">Follow-Up</button>
-  <button class="nav-tab" onclick="switchTab('database',this)">Base de Datos</button>
-  <button class="nav-tab" onclick="switchTab('github',this)">GitHub Setup</button>
+  <button class="nav-tab active" onclick="switchTab('database',this)">Base de Datos</button>
+  <button class="nav-tab admin-only" onclick="switchTab('github',this)" style="display:none">GitHub Setup</button>
 </div>
 
 <div class="main">
 
   <!-- OVERVIEW -->
-  <div class="panel active" id="panel-overview">
+  <div class="panel" id="panel-overview">
     <div class="kpi-strip">
       <div class="kpi-card blue"><div class="kpi-label">Total Reviews</div><div class="kpi-value" id="kpi-total">75</div></div>
       <div class="kpi-card green"><div class="kpi-label">Ofertas Hechas</div><div class="kpi-value" id="kpi-offers">68</div></div>
@@ -725,7 +728,7 @@
   </div>
 
   <!-- DATABASE -->
-  <div class="panel" id="panel-database">
+  <div class="panel active" id="panel-database">
     <div class="db-header">
       <div class="db-filters">
         <input class="search-input" type="text" placeholder="Buscar agente, ticket..." id="db-search" oninput="renderDB()">
@@ -1089,6 +1092,23 @@
 
 <div class="toast" id="toast"></div>
 
+<!-- ADMIN PASSWORD MODAL -->
+<div class="modal-overlay" id="admin-modal">
+  <div class="modal" style="width:380px">
+    <div class="modal-title">Acceso Admin</div>
+    <div class="modal-desc">Ingresa la contraseña para activar el modo edición.</div>
+    <div class="form-group">
+      <label class="form-label">Contraseña</label>
+      <input class="form-input" id="admin-pwd-input" type="password" placeholder="••••••••" onkeydown="if(event.key==='Enter')checkAdminPwd()">
+    </div>
+    <div id="admin-pwd-error" style="display:none;color:var(--red);font-size:12px;margin-top:8px">Contraseña incorrecta</div>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="document.getElementById('admin-modal').classList.remove('open')">Cancelar</button>
+      <button class="btn btn-primary" onclick="checkAdminPwd()">Entrar</button>
+    </div>
+  </div>
+</div>
+
 <!-- GITHUB PUBLISH MODAL -->
 <div class="modal-overlay open" id="github-modal">
   <div class="modal" style="width:520px">
@@ -1099,8 +1119,8 @@
       <div class="form-group" style="margin-bottom:14px">
         <label class="form-label">GitHub Personal Access Token</label>
         <div style="display:flex;gap:8px">
-          <input class="form-input" id="gh-token-input" type="text" placeholder="ghp_..." style="flex:1">
-          <button class="btn btn-secondary" onclick="toggleTokenVis()" id="tok-vis-btn" style="padding:8px 12px;font-size:11px">Ocultar</button>
+          <input class="form-input" id="gh-token-input" type="password" placeholder="ghp_..." style="flex:1">
+          <button class="btn btn-secondary" onclick="toggleTokenVis()" id="tok-vis-btn" style="padding:8px 12px;font-size:11px">Mostrar</button>
         </div>
         <div style="font-size:11px;color:var(--muted);margin-top:5px">Solo necesitas ingresarlo una vez — se guarda en tu navegador.</div>
       </div>
@@ -1900,8 +1920,65 @@ async function publishToGithub() {
   }
 }
 
+// ============================================================
+// ADMIN MODE
+// ============================================================
+const ADMIN_HASH = '6fd56b9a4121e97f733406df6a7f08ed327a4748738c723c1ec9f9f51e8e5cbd';
+
+async function sha256(str) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+
+function isAdmin() {
+  return sessionStorage.getItem('orig_admin') === 'true';
+}
+
+function applyAdminState() {
+  const admin = isAdmin();
+  // Show/hide admin controls in header
+  const ac = document.getElementById('admin-controls');
+  if (ac) ac.style.display = admin ? 'flex' : 'none';
+  // Toggle button label
+  const btn = document.getElementById('admin-toggle-btn');
+  if (btn) btn.textContent = admin ? '🔓 Admin' : '🔒 Admin';
+  // Show/hide all admin-only elements
+  document.querySelectorAll('.admin-only').forEach(el => {
+    el.style.display = admin ? (el.tagName === 'BUTTON' ? 'inline-block' : 'flex') : 'none';
+  });
+}
+
+function toggleAdmin() {
+  if (isAdmin()) {
+    sessionStorage.removeItem('orig_admin');
+    applyAdminState();
+    showToast('Modo admin desactivado');
+  } else {
+    document.getElementById('admin-pwd-input').value = '';
+    document.getElementById('admin-pwd-error').style.display = 'none';
+    document.getElementById('admin-modal').classList.add('open');
+    setTimeout(() => document.getElementById('admin-pwd-input').focus(), 100);
+  }
+}
+
+async function checkAdminPwd() {
+  const pwd = document.getElementById('admin-pwd-input').value;
+  const hash = await sha256(pwd);
+  if (hash === ADMIN_HASH) {
+    sessionStorage.setItem('orig_admin', 'true');
+    document.getElementById('admin-modal').classList.remove('open');
+    applyAdminState();
+    showToast('Modo admin activado ✓');
+  } else {
+    document.getElementById('admin-pwd-error').style.display = 'block';
+    document.getElementById('admin-pwd-input').value = '';
+    document.getElementById('admin-pwd-input').focus();
+  }
+}
+
 // INIT
 render();
+applyAdminState();
 </script>
 
 
